@@ -1,9 +1,12 @@
+import Story from '@/components/template/Story'
 import React from 'react'
 
-const page = () => {
+const StoryPage = () => {
   return (
-    <div>Product Story Page</div>
+    <>
+      <Story />
+    </>
   )
 }
 
-export default page
+export default StoryPage
