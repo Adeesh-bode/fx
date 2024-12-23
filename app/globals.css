@@ -1,27 +1,121 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; 
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+*{    
+  /* css styles for every element */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* outline: 2px solid red; */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::-webkit-scrollbar{
+  display: none;
+}
+
+
+:root {
+  /* color variables for  entire project */
+  
+  /* Light Mode */
+  --light-primary-color: #F5E649;
+  --light-secondary-color: #2D488F;
+  
+  --light-background-color: #FFFFFF;
+  --light-shade1-background-color:#D9D9D9;
+  --light-shade2-background-color:#EDEDED;
+  
+  --light-text-color: #000000;
+  
+    /* Dark Mode */
+  --dark-primary-color: #F5E649;
+  --dark-secondary-color: #2D488F;
+  
+  --dark-background-color: #000000;
+  --dark-shade1-background-color: #5B5B5B;
+  --dark-shade2-background-color: #383838;
+
+  --dark-text-color: #FFFFFF;
+}
+
+/* Apply Light/Dark Mode ------- toggle by js logic */
+.light-mode {
+  --background-color: var(--light-background-color);
+  --shade1-background-color: var(--light-shade1-background-color); 
+  --shade2-background-color: var(--light-shade2-background-color); 
+  --text-color: var(--light-text-color);
+
+--primary-color: var(--light-primary-color);
+--secondary-color: var(--light-secondary-color);
+}
+
+.dark-mode {
+  --background-color: var(--dark-background-color);
+  --shade1-background-color: var(--dark-shade1-background-color);
+  --shade2-background-color: var(--dark-shade2-background-color);
+    --text-color: var(--dark-text-color);
+
+    --primary-color: var(--dark-primary-color);
+    --secondary-color: var(--dark-secondary-color);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  /* color: var(--foreground); */
+  /* background: var(--background); */
   font-family: Arial, Helvetica, sans-serif;
+
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+
+/* Custom classes */
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.bg-secondary{
+  background-color: var(--secondary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.bg-color{
+  background-color: var(--background-color);
+  }
+  
+.shade1-bg-color{
+  background-color: var(--shade1-background-color);
+}
+.shade2-bg-color{
+  background-color: var(--shade2-background-color);
+}
+.text-color{
+  color:var(--text-color);
+}
+
+
+/* Other than Color Theme */
+.text-top-start {
+  vertical-align: top;
+  text-align: left;
+}
+
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
