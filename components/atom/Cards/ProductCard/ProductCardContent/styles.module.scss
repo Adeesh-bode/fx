@@ -10,10 +10,10 @@
     }
 
     .cardContent h3{
-        @apply text-4xl font-medium;
+        @apply text-2xl md:text-4xl font-medium;
     }
 
     .cardContent p{
-        @apply text-xl font-normal;
+        @apply text-base md:text-xl font-normal;
     }
 }
