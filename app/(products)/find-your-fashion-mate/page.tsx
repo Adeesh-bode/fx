@@ -1,9 +1,12 @@
+import FashionMate from '@/components/template/FashionMate'
 import React from 'react'
 
-const page = () => {
+const fashionMatePage = () => {
   return (
-    <div>page</div>
+    <>
+    <FashionMate />
+    </>
   )
 }
 
-export default page
+export default fashionMatePage
