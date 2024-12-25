@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { ProductDataI } from "@/utils/interface/shared";
@@ -18,32 +17,33 @@ const ProductCardContent = ({
   };
   return (
     <div className={styles.ProductCardContent} onClick={handleClick}>
-        <span
-          style={{ background: color, display: "hidden", position: "absolute" }}
-          ></span>
-        <div className={styles.cardHeader}>
-          <Image
-            src={`${imagePath}` || "/default.svg"}
-            alt={name}
-            width={60}
-            height={60}
-            className="opacity-65"
-            />
-            {/* <Link href={`${redirectionPath}`}> */}
+      <span
+        style={{ background: color, display: "hidden", position: "absolute" }}
+      ></span>
+      <div className={styles.cardHeader}>
+        <Image
+          src={`${imagePath}` || "/default.svg"}
+          alt={name}
+          width={60}
+          height={60}
+          className="opacity-65"
+        />
+        {/* <Link href={`${redirectionPath}`}> */}
+        <span className="hidden md:block ">
           <Image
             src={"/icons/redirection-button.svg"}
             alt="Redirection Button"
             width={50}
             height={50}
-            // className="!hidden !md:block"
           />
-    {/* </Link> */}
-        </div>
-        <div className={styles.cardContent}>
-          <p>{description}</p>
-          <h3>{name}</h3>
-        </div>
+        </span>
+        {/* </Link> */}
       </div>
+      <div className={styles.cardContent}>
+        <p>{description}</p>
+        <h3>{name}</h3>
+      </div>
+    </div>
   );
 };
 
