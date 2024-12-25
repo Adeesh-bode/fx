@@ -1,0 +1,10 @@
+.CardContainer {
+    @apply relative flex flex-col justify-center items-center w-[310px] h-[360px] p-[6px] rounded-2xl 
+    shadow-md transition-all duration-300 ease-in-out cursor-pointer overflow-hidden;
+    transform-origin: bottom;
+
+    &:hover {
+        @apply shadow-lg;
+        /* For scaling on hover, use inline style or add custom class in your JS file */
+    }
+}
