@@ -1,0 +1,31 @@
+.container {
+	@apply w-full md:h-full flex flex-col justify-start items-center gap-2  overflow-hidden  pt-4 md:pt-6 lg:pt-10;
+}
+
+.label {
+	@apply border-2 border-[#F2B711] px-2 md:px-4 py-1 md:py-2 text-xl md:text-3xl flex items-center gap-2 rounded-full;
+
+	span:nth-child(1) {
+		@apply font-normal;
+	}
+
+	span:nth-child(2) {
+		@apply text-[#F2B711] font-bold;
+	}
+}
+
+.content {
+	@apply flex flex-col justify-start items-center gap-4;
+
+	.heading {
+		@apply text-3xl md:text-6xl font-bold tracking-wider text-center;
+	}
+
+	.description {
+		@apply md:text-2xl text-center text-gray-700 tracking-wide;
+	}
+}
+
+.allproducts {
+	@apply w-full h-[450px] absolute bottom-0 flex justify-center items-end overflow-hidden;
+}
