@@ -1,29 +1,46 @@
 import { fashionMateSteps } from "@/utils/constants/fashionMateSteps";
+// import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
   return (
     <section
-      className="w-full h-full flex flex-col md:flex-row justify-start items-start gap-8"
+      className="w-full h-full flex flex-col lg:flex-row justify-start items-start gap-8"
       //   className="w-full h-full flex flex-col md:flex-row justify-start items-start gap-8  pt-5 md:pt-8 lg:pt-16"
       aria-label="Main Section for Fashion Mate Page"
     >
       <header className="w-full h-full flex flex-col gap-6 justify-center items-start">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-14 ">
           <h1 className="text-2xl md:text-4xl lg:text-5xl">
             Find Your Lifelong Fashion Mate
           </h1>
-          <p className="text-gray-500 md:text-lg lg:text-xl">
-            Unite with your perfect style companion for the ultimate Fashion
-            exchange!
-          </p>
+          <div className="flex gap-10">
+            {/* <span className="relative h-[300px] rounded-lg overflow-hidden"> */}
+              <img
+                src={"/images/product/fashionx/fx-exchange.webp"}
+                alt="Fashion Exchange Visual"
+                className="w-[400px] rounded-lg "
+              />
+              {/* <Image src={'/images/product/fashionx/fx-exchange.webp'} alt="Fashion Exchange Visual" fill objectFit="contain"  /> */}
+            {/* </span> */}
+            <div className="flex flex-col justify-center gap-3 w-[440px] " >
+              <h3 className="italic" >Where Style Meets Connection</h3>
+              <p className="text-gray-500 md:text-lg lg:text-xl">
+              Unite with your perfect style companion to explore, share, and exchange fashion treasures that reflect your unique personality and taste!              </p>
+              {/* <ul className="text-gray-500  md:text-base lg:text-lg" >
+                <li><b>Unite</b> with <b>like-minded</b> individuals who share your unique fashion sense.</li>
+                <li>Exchange accessories effortlessly—from scarves and hats to jewelry and more.</li>
+                <li>Experience a personalized and seamless journey powered by AI, designed to bring your style dreams to life.</li>
+              </ul> */}
+              <Link href="/find-your-fashion-mate/review-preference">
+                <button className="bg-transparent border-2 border-gray-500 text-black px-3 py-1 rounded-xl text-lg md:text-xl lg:text-2xl ">
+                  Try Now
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
-        <Link href="/find-your-fashion-mate/review-preference">
-          <button className="bg-transparent border-2 border-gray-500 text-black px-3 py-1 rounded-xl text-lg md:text-xl lg:text-2xl ">
-            Try Now
-          </button>
-        </Link>
       </header>
       <aside
         aria-label="instruction for how finding fashion mate works!"
