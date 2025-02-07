@@ -6,7 +6,7 @@ import React from "react";
 const Hero = () => {
   return (
     <section
-      className="w-full h-full flex flex-col lg:flex-row justify-start items-start gap-8"
+      className=" px-5 py-8 w-full h-full flex flex-col lg:flex-row justify-start items-start gap-8"
       //   className="w-full h-full flex flex-col md:flex-row justify-start items-start gap-8  pt-5 md:pt-8 lg:pt-16"
       aria-label="Main Section for Fashion Mate Page"
     >
@@ -15,16 +15,16 @@ const Hero = () => {
           <h1 className="text-2xl md:text-4xl lg:text-5xl">
             Find Your Lifelong Fashion Mate
           </h1>
-          <div className="flex gap-10">
+          <div className="flex flex-col lg:flex-row gap-10">
             {/* <span className="relative h-[300px] rounded-lg overflow-hidden"> */}
               <img
                 src={"/images/product/fashionx/fx-exchange.webp"}
                 alt="Fashion Exchange Visual"
-                className="w-[400px] rounded-lg "
+                className="lg:w-[400px] rounded-lg "
               />
               {/* <Image src={'/images/product/fashionx/fx-exchange.webp'} alt="Fashion Exchange Visual" fill objectFit="contain"  /> */}
             {/* </span> */}
-            <div className="flex flex-col justify-center gap-3 w-[440px] " >
+            <div className="flex flex-col justify-center gap-3 lg:w-[440px] " >
               <h3 className="italic" >Where Style Meets Connection</h3>
               <p className="text-gray-500 md:text-lg lg:text-xl">
               Unite with your perfect style companion to explore, share, and exchange fashion treasures that reflect your unique personality and taste!              </p>

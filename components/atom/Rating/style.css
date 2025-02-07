@@ -1,0 +1,39 @@
+/* Rating container styles */
+.rating-container {
+    display: inline-flex;
+    direction: row;
+    font-size: 24px;
+  }
+  
+  /* Styles for the empty star */
+  .star-empty::before {
+    content: '☆';  /* Unicode for empty star */
+    color: #ddd;
+  }
+  
+  /* Styles for the full star */
+  .star-full::before {
+    content: '★';  /* Unicode for full star */
+    color: #ffcc00;
+  }
+  
+  /* Styles for the half star */
+  .star-half::before {
+    content: '★';  /* Unicode for full star */
+    color: #ffcc00;
+    background: linear-gradient(90deg, #ffcc00 50%, #ddd 50%);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  /* Pointer cursor for interactive stars */
+  .star {
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  /* Disabled pointer cursor */
+  .star:disabled {
+    cursor: not-allowed;
+  }
+  
