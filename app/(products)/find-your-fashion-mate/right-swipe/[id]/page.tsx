@@ -7,6 +7,21 @@ import { fetchUser } from "@/utils/actions";
 import { swapProductI, swapProducts } from "@/utils/constants/swapProducts";
 import { IoIosCloseCircleOutline, IoMdSend } from "react-icons/io";
 
+interface Message {
+  id: string;
+  body: string;
+  date: string;
+  userId: string;
+  media: string;
+}
+
+const templateMessages = [
+  "I want to exchange",
+  "I want to buy",
+  "Is this available?",
+  "Got matched with you? I wanna swap this",
+];
+
 const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -14,6 +29,23 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
   const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  const addMessage = (text: string) => {
+    const newMessage: Message = {
+      id: crypto.randomUUID(), 
+      body: text,
+      date: new Date().toISOString(),
+      userId: id,
+      media: "",
+    };
+
+    setMessages((prev) => [...prev, newMessage]);
+  };
+
+  useEffect(()=>{
+    setMessages([]);
+  },[id, selectedProduct])
 
   useEffect(() => {
     const getUserData = async () => {
@@ -37,7 +69,9 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
       <section className="w-full h-full bg-white flex rounded-xl ">
         <aside className=" flex-shrink-0 py-8 px-5 lg:px-8 w-full lg:w-[250px] lg:h-full flex lg:flex-col justify-between items-center lg:items-start gap-4 border-r-[1px] border-black">
           <ul className="flex flex-col gap-1 text-base  md:text-lg">
-            <li className="font-semibold" >{userData?.name || "Rahul Sharma"}</li>
+            <li className="font-semibold">
+              {userData?.name || "Rahul Sharma"}
+            </li>
             <li>{userData?.gender || "Male"}</li>
             <li>{userData?.reviewCount || "45 reviews"}</li>
             <Rating readOnly value={userData?.rating || 3.5} precision={0.5} />
@@ -71,29 +105,43 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
         {selectedProduct && (
           <div className="flex flex-col justify-center items-center h-full border-r-[1px] border-black">
             <div className="relative w-full text-left text-base md:text-lg px-2 lg:px-3 py-2  border-b-2 border-gray-600/40">
-            <IoIosCloseCircleOutline
-              className="absolute top-3 right-3 text-black"
-              onClick={() => setSelectedProduct(null)}
-              size={20}
-            />
-              {selectedProduct.name}
+              <IoIosCloseCircleOutline
+                className="absolute top-3 right-3 text-black"
+                onClick={() => setSelectedProduct(null)}
+                size={20}
+              />
+              {selectedProduct.name.length > 25
+                ? selectedProduct.name.slice(0, 25) + "..."
+                : selectedProduct.name}
             </div>
-            <div className="w-full h-full flex flex-col justify-center items-center overflow-y-auto">
-              No messages
+            <div className="w-full h-full flex flex-col gap-2 justify-start items-end p-2 ">
+              {messages.length > 0 &&
+                messages.map((msg, index) => (
+                  <div key={index} className="">
+                    <span className={`w-full text-center px-2 py-1 h-6 text-sm rounded-md bg-green-300/40  ${msg.userId==id? "text-right self-end " : "text-left self-start"}`}>
+                      {msg.body}
+                    </span>
+                  </div>
+                ))}
             </div>
+
+            {messages.length === 0 && (
+              <div className="w-full h-full text-base text-gray-300 flex flex-col justify-center items-center overflow-y-auto">
+                no message
+              </div>
+            )}
+
+            {/* Template Message Buttons */}
             <div className="w-full px-2 py-2 lg:px-4 lg:py-3 flex flex-wrap gap-1 items-stretch">
-              <span className="text-center px-2 h-6 text-sm rounded-md bg-gray-300/40 ">
-                I want to exchange
-              </span>
-              <span className="text-center px-2 h-6 text-sm rounded-md bg-gray-300/40 ">
-                I want to buy
-              </span>
-              <span className="text-center px-2 h-6 text-sm rounded-md bg-gray-300/40 ">
-                Is this available?
-              </span>
-              <span className="text-center px-2 h-6 text-sm rounded-md bg-gray-300/40 ">
-                Got matched with you? I wanna swap this
-              </span>
+              {templateMessages.map((msg) => (
+                <button
+                  key={msg}
+                  onClick={() => addMessage(msg)}
+                  className="text-center px-2 h-6 text-sm rounded-md bg-gray-300/40"
+                >
+                  {msg}
+                </button>
+              ))}
             </div>
 
             <div className="w-full h-12 lg:h-16 flex px-2 lg:px-4 pb-2">
@@ -101,9 +149,10 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
                 type="text"
                 className="w-full  h-full border-2 border-gray-500/40 text-base px-2"
                 placeholder="enter message"
+                onClick={(e)=>addMessage(e.target.value)}
               ></input>
-              <span className="w-10 h-10 flex justify-center items-center bg-green-500 " >
-              <IoMdSend className="text-black" size={20} />
+              <span className="w-10 h-10 flex justify-center items-center bg-green-500 ">
+                <IoMdSend className="text-black" size={20} />
               </span>
             </div>
           </div>
@@ -111,9 +160,7 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
 
         {/* swap pruducts listed */}
 
-        <div
-          className=" relative w-full h-full overflow-hidden"
-        >
+        <div className=" relative w-full h-full overflow-hidden">
           <span
             className="w-16 h-16 rounded-full bg-white flex justify-center items-center fixed bottom-24 right-36 cursor-pointer"
             onClick={() => {
@@ -124,9 +171,10 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
           >
             <BiDownArrow className="text-black" size={35} />
           </span>
-          <div 
-          ref={scrollRef}
-          className="h-full w-full overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] ">
+          <div
+            ref={scrollRef}
+            className="h-full w-full overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] "
+          >
             {swapProducts.map((product, index) => (
               <div
                 key={index}
