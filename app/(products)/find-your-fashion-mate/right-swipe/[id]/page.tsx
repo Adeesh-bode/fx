@@ -6,6 +6,7 @@ import { BiDownArrow } from "react-icons/bi";
 import { fetchUser } from "@/utils/actions";
 import { swapProductI, swapProducts } from "@/utils/constants/swapProducts";
 import { IoIosCloseCircleOutline, IoMdSend } from "react-icons/io";
+import { toast } from "sonner";
 
 interface Message {
   id: string;
@@ -61,7 +62,16 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
     getUserData();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+
+  const swapRequest = () => {
+    toast.success("Swap Request Sent!");
+  }
+
+  const purchaseRequest = () => {
+    toast.success("Purchase Request Sent!");
+  }
+
+  if (loading) return <div className="w-full h-full flex justify-center items-center" >Loading...</div>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
@@ -156,11 +166,15 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
               </span>
             </div>
             <div className="w-full flex gap-3 py-2 px-2 lg:px-4 ">
-              <button className="w-full bg-green-500/70 text-white px-2 py-2 rounded-md ">
+              <button className="w-full bg-green-500/70 text-white px-2 py-2 rounded-md "
+              onClick={()=>swapRequest()}
+              >
                 Swap Request
               </button>
               
-              <button className="w-full bg-green-500/70 text-white px-2 py-2 rounded-md text-nowrap ">
+              <button className="w-full bg-green-500/70 text-white px-2 py-2 rounded-md text-nowrap "
+                onClick={()=>purchaseRequest()}
+              >
                 Purchase Request
               </button>
 

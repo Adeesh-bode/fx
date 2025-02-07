@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Readex_Pro } from 'next/font/google';
 import "./globals.css";
 import Providers from "@/components/Shared/auth/Providers";
+import { Toaster } from "@/components/ui/sooner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${ReadexPro.className} antialiased !bg-gradient h-screen w-screen`}
-      >
+      > 
+        <Toaster />
         <Providers> {/* provide context for use session hook in entire applicatn */}
           {children}
         </Providers>
