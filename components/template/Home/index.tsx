@@ -1,10 +1,11 @@
 import ProductsSection from '@/components/molecule/Page/Home/ProductsSection'
+import Navbar from '@/components/Shared/Navbar'
 import React from 'react'
 
 const Home = () => {
 	return (
 		<div className='flex flex-col w-screen h-full overflow-hidden'>
-			{/* <Navbar /> */}
+			<Navbar />
 			<ProductsSection />
 		</div>
 	)
