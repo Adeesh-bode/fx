@@ -23,9 +23,10 @@ const ProductsSection = () => {
 			</div> */}
 			<h2 className={styles.label}>
 				<span>
-					India&apos;s 1<sup>st</sup>
+					Revolutionizing Fashion with 
+					{/* India&apos;s 1<sup>st</sup> */}
 				</span>
-				<span>AI Powered</span>
+				<span>AI & Sustainability</span>
 				<Image src={'/icons/electric_bolt.svg'} alt='Electric Bolt' width={40} height={40} />
 			</h2>
 			<div className={styles.content}>

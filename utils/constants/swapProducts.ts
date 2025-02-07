@@ -15,9 +15,23 @@ export const swapProducts : swapProductI[] = [
         "status": "Available",
     },
     {
+        "id": "6",
+        "name": "Nike air sneakers",
+        "image": "nikeairsneakers.webp",
+        "type": "Streetwear",
+        "status": "Available",
+    },
+    {
         "id": "2",
         "name": "Graphic Zip Up Hoodie",
         "image": "graphiczipuphoodie.webp",
+        "type": "Streetwear",
+        "status": "Available",
+    },
+    {
+        "id": "7",
+        "name": "Monocarter Pendant Locket",
+        "image": "monocarterpendantlocket.jpg",
         "type": "Streetwear",
         "status": "Available",
     },
@@ -42,4 +56,5 @@ export const swapProducts : swapProductI[] = [
         "type": "Streetwear",
         "status": "Available",
     },
+    
 ];

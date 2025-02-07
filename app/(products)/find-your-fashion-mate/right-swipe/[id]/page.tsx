@@ -1,5 +1,5 @@
 "use client";
-
+// TODO: Modularize
 import React, { useEffect, useRef, useState } from "react";
 import Rating from "@mui/material/Rating";
 import { BiDownArrow } from "react-icons/bi";
@@ -149,11 +149,21 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
                 type="text"
                 className="w-full  h-full border-2 border-gray-500/40 text-base px-2"
                 placeholder="enter message"
-                onClick={(e)=>addMessage(e.target.value)}
+                onClick={(e: React.FormEvent<HTMLInputElement>)=>addMessage(e.currentTarget.value)}
               ></input>
               <span className="w-10 h-10 flex justify-center items-center bg-green-500 ">
                 <IoMdSend className="text-black" size={20} />
               </span>
+            </div>
+            <div className="w-full flex gap-3 py-2 px-2 lg:px-4 ">
+              <button className="w-full bg-green-500/70 text-white px-2 py-2 rounded-md ">
+                Swap Request
+              </button>
+              
+              <button className="w-full bg-green-500/70 text-white px-2 py-2 rounded-md text-nowrap ">
+                Purchase Request
+              </button>
+
             </div>
           </div>
         )}
@@ -184,7 +194,7 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
                 <img
                   src={`/images/product/fashionx/Outfits/${product.image}`}
                   alt={product.name}
-                  className="w-full h-full object-cover overflow-hidden "
+                  className="w-full h-full object-cover overflow-hidden"
                 />
                 {/* <div className="w-full h-full flex flex-col justify-center items-center px-3 py-3 ">
                 <span className="text-center text-lg">{product.name}</span>
