@@ -61,7 +61,7 @@ const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
             <img
               src={"/images/product/fashionx/avatar.png"}
               alt="User Profile Image"
-              className="w-32 rounded-full object-contain"
+              className="w-28 lg:w-36 rounded-full object-contain"
             />
           </span>
         </aside>
