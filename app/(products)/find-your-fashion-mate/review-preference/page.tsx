@@ -44,7 +44,8 @@ const ReviewPreference = () => {
   };
 
   return (
-    <main className='w-screen h-screen flex flex-col justify-center items-center p-4'>
+    <main className='w-screen h-screen flex flex-col justify-center items-center gap-3 p-4'>
+      <h1 className='text-lg md:text-2xl' >Fashion Preferences</h1>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 p-6 border border-gray-300 rounded-lg shadow-lg'>
         <label className='flex justify-between text-nowrap gap-4 ' >Top Size:
           <select className='w-[150px] border ' {...register("sizeTop")}>
