@@ -1,20 +1,10 @@
-<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-  <img src='/readme-assets/fx-logo-dark-mode.png' alt='Fashion Exchange logo'/>
-</div>
+![Fashion Exchange logo](readme-assets/fx-logo-dark-mode.png)
 
-<div>
-  <h3>To know details about the project:</h3>
-  <a href='https://www.canva.com/design/DAGOgpNaNZI/-SHGfEvIWklq2RG7Sm-tWg/view?utm_content=DAGOgpNaNZI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8df6a57914#16'>
-    <button style="background-color: #48bb78; padding: 8px 16px; color: white; border: none; border-radius: 4px; cursor: pointer;">
-      Know More
-    </button>
-  </a>
-  <img src='readme-assets/ppt-thumbnail.png' alt='FashionX presentation thumbnail' />
-  
-</div>
+### To know details about the project:
+[Know More About the Project ](https://www.canva.com/design/DAGOgpNaNZI/-SHGfEvIWklq2RG7Sm-tWg/view?utm_content=DAGOgpNaNZI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8df6a57914#16)
 
-<h4>Backend & Other Associated Repositories:</h4>
-<ul>
-  <li>FX Main Backend: <a href="https://github.com/Adeesh-bode/fx-backend" style="color: #38a169;">Redirect</a></li>
-  <li>FX Model: <a href="https://github.com/Adeesh-bode/FXModel" style="color: #38a169;">Redirect</a></li>
-</ul>
+[![FashionX presentation thumbnail](readme-assets/ppt-thumbnail.png)](https://www.canva.com/design/DAGOgpNaNZI/-SHGfEvIWklq2RG7Sm-tWg/view?utm_content=DAGOgpNaNZI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8df6a57914#16)
+
+### Backend & Other Associated Repositories:
+- **FX Main Backend**: [Redirect](https://github.com/Adeesh-bode/fx-backend)
+- **FX Model**: [Redirect](https://github.com/Adeesh-bode/FXModel)
