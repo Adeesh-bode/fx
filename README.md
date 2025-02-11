@@ -9,3 +9,7 @@
     >Know More</button>
 </div>
 
+Backend & other Associated repositories 
+
+FX Main Backend:: <a href='https://github.com/Adeesh-bode/fx-backend' classname='text-green' >Redirect</a>
+Fx model ::  <a href='https://github.com/Adeesh-bode/FXModel' classname='text-green' >Redirect</a>
