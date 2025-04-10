@@ -27,7 +27,7 @@ const ProductsSection = () => {
 					{/* India&apos;s 1<sup>st</sup> */}
 				</span>
 				<span>AI & Sustainability</span>
-				<Image src={'/icons/electric_bolt.svg'} alt='Electric Bolt' width={40} height={40} />
+				<Image src={'/icons/electric_bolt.svg'} alt='Electric Bolt' width={30} height={30} />
 			</h2>
 			<div className={styles.content}>
 				<h1 className={styles.heading}>FashionX</h1>
