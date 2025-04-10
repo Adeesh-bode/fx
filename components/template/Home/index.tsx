@@ -1,5 +1,5 @@
 import ProductsSection from '@/components/molecule/Page/Home/ProductsSection'
-import Navbar from '@/components/Shared/Navbar'
+import Navbar from '@/feature/Shared/Navbar'
 import React from 'react'
 
 const Home = () => {

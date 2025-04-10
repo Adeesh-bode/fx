@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import { Readex_Pro } from 'next/font/google';
 import "./globals.css";
-import Providers from "@/components/Shared/auth/Providers";
+import Providers from "@/feature/Shared/auth/Providers";
 import { Toaster } from "@/components/ui/sooner";
+// import AuthButtons from "@/feature/Shared/auth/AuthButtons";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,6 +28,7 @@ export default function RootLayout({
       > 
         <Toaster />
         <Providers> {/* provide context for use session hook in entire applicatn */}
+        {/* <AuthButtons /> */}
           {children}
         </Providers>
       </body>
