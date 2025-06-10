@@ -1,13 +1,16 @@
 "use client";
 
+import axios from "axios";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { signupSchema, SignUptype } from "@/utils/validations/signup";
+import { BACKEND_URL } from "@/utils/constants/Env";
 
 export default function SignUpForm() {
-  const [serverMessage, setServerMessage] = useState<string | null>(null);
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -18,10 +21,18 @@ export default function SignUpForm() {
 
   const onSubmit = async (data: SignUptype) => {
     console.log("Form submitted:", data);
-
-    setTimeout(() => {
-      setServerMessage(`Welcome, ${data.name}! Your account has been created.`);
-    }, 1000);
+    try{
+      const url = BACKEND_URL + "/auth/signup";
+      console.log("API URL:", url);
+      console.log("Data to be sent:", data);
+      const response = await axios.post(url, data,{ headers: { "Content-Type": "application/json" } });
+      console.log(response);
+      router.push("/");
+      toast.success("Signup successful!");
+    }catch (error) {
+      console.error("Error during signup:", error);
+      toast.error("Error during signup");
+    }
   };
 
   return (
@@ -73,8 +84,6 @@ export default function SignUpForm() {
       >
         {isSubmitting ? "Submitting..." : "Sign Up"}
       </button>
-
-      {serverMessage && <p className="text-green-500">{serverMessage}</p>}
     </form>
     </div>
 
