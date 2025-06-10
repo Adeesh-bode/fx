@@ -1,4 +1,4 @@
-import { fashionMateSteps } from "@/utils/constants/fashionMateSteps";
+import { fashionMateSteps } from "@/lib/constants/fashionMateSteps";
 // import Image from "next/image";
 import Link from "next/link";
 import React from "react";

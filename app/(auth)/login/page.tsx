@@ -3,9 +3,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { signupSchema, SignUptype } from "@/utils/validations/signup";
+import { signupSchema, SignUptype } from "@/lib/validations/signup";
 
-export default function LogInForm() {
+export default function LogInPage() {
   const [serverMessage, setServerMessage] = useState<string | null>(null);
 
   const {

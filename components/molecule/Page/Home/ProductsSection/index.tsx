@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss'
 
 import ProductCard from '@/components/atom/Cards/ProductCard'
-import productCardDetails from '@/utils/constants/products'
-import { ProductCardI } from '@/utils/interface/shared'
+import productCardDetails from '@/lib/constants/products'
+import { ProductCardI } from '@/lib/interface/shared'
 import Image from 'next/image'
 
 const ProductsSection = () => {

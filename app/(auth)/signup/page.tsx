@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signupSchema, SignUptype } from "@/utils/validations/signup";
-import { BACKEND_URL } from "@/utils/constants/Env";
+import { signupSchema, SignUptype } from "@/lib/validations/signup";
+import { BACKEND_URL } from "@/lib/constants/Env";
 
-export default function SignUpForm() {
+export default function SignUpPage() {
   const router = useRouter();
   const {
     register,

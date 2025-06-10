@@ -4,6 +4,7 @@ import { Readex_Pro } from 'next/font/google';
 import "./globals.css";
 import Providers from "@/feature/Shared/auth/Providers";
 import { Toaster } from "@/components/ui/sooner";
+import Navbar from "@/feature/Shared/Navbar";
 // import AuthButtons from "@/feature/Shared/auth/AuthButtons";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({
       > 
         <Toaster />
         <Providers> {/* provide context for use session hook in entire applicatn */}
+        <Navbar />
         {/* <AuthButtons /> */}
           {children}
         </Providers>

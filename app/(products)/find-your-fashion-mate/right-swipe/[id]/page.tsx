@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Rating from "@mui/material/Rating";
 import { BiDownArrow } from "react-icons/bi";
-import { fetchUser } from "@/utils/actions";
-import { swapProductI, swapProducts } from "@/utils/constants/swapProducts";
+import { fetchUser } from "@/lib/actions";
+import { swapProductI, swapProducts } from "@/lib/constants/swapProducts";
 import { IoIosCloseCircleOutline, IoMdSend } from "react-icons/io";
 import { toast } from "sonner";
 
