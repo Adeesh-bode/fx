@@ -10,6 +10,7 @@ import { signupSchema, SignUptype } from "@/lib/validations/signup";
 import { BACKEND_URL } from "@/lib/constants/Env";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -87,8 +88,10 @@ export default function SignUpPage() {
           disabled={isSubmitting}
           className="bg-blue-500 text-white p-2 rounded"
         >
+
           {isSubmitting ? "Submitting..." : "Sign Up"}
         </button>
+        <p className=" text-center">Already Registered? <Link href={`/login?callbackUrl=${callbackUrl}`}className="text-green-500" >Log In</Link></p>
       </form>
     </div>
   );

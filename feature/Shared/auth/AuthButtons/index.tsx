@@ -19,7 +19,7 @@ const AuthButtons = () => {
       <div className="flex gap-4 text-xl md:text-2xl">
         {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.accessToken}</p> */}
         <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.name}</p>
-        <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.email}</p>
+        {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.email}</p> */}
         <Link
           // onClick={()=>signOut()}
           href="/api/auth/signout"

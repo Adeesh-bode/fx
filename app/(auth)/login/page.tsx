@@ -52,7 +52,7 @@ export default function LogInPage() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-4 max-w-md mx-auto p-4 border-2 rounded-lg bg-white/40 backdrop-blur-lg shadow-lg"
       >
-      <h1 className="text-center text-3xl font-bold text-black">Login In</h1>
+      <h1 className="text-center text-3xl font-bold text-black">Log In</h1>
 
       <label>
         Email:
