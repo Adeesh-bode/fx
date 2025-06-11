@@ -2,7 +2,7 @@
 
 import { BACKEND_URL } from "@/lib/constants/Env";
 import axios from "axios";
-import { getSession } from "../auth";
+import { getSession } from "../getSession";
 
 
 
@@ -20,6 +20,7 @@ export async function getUserDetails() {
       headers: { "Cache-Control": "no-cache", Authorization: `Bearer ${session.accessToken}` },
     });
     console.log(response);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching user:", error);

@@ -44,7 +44,9 @@ async function refreshToken(token: JWT): Promise<JWT> {
 
 
 export const authOptions: NextAuthOptions = {
-  // credentials ,googgle github etc...
+  secret: process.env.NEXTAUTH_SECRET, 
+    // credentials ,googgle github etc...
+
   providers: [
     CredentialsProvider({
       name: "Login",
@@ -96,28 +98,34 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log(credentials);
         if (!credentials?.email || !credentials?.password || !credentials?.name)
           return null;
 
-        const { email, password } = credentials;
-        const res = await fetch(BACKEND_URL + "auth/signup", {
+        const { email, password, name } = credentials;
+        const url = BACKEND_URL + "/auth/signup";
+        console.log("API URL:", url);
+        const data = JSON.stringify({
+          email,
+          password,
+          name,
+        });
+        console.log("Data to be sent:", data);
+        const res = await fetch( url, {
           method: "POST",
-          body: JSON.stringify({
-            email,
-            password,
-            name,
-          }),
+          body: data,
           headers: {
             "Content-Type": "application/json",
           },
         });
 
-        if (res.status !== 201) {
-          console.log(res.statusText);
 
-          throw new Error("User already exists");
+        if (res.status !== 201 && res.status !== 200) {
+          console.log(res.statusText);
+          throw new Error("error:" + res.statusText);
         }
         const user = await res.json();
+        console.log(user);
         const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
         return { ...user, expiryAt };
       },
@@ -126,16 +134,16 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
-  cookies: {
-    sessionToken: {
-      name: "fx",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-      },
-    },
-  },
+//   cookies: {
+//     sessionToken: {
+//       name: "fx",
+//       options: {
+//         httpOnly: true,
+//         sameSite: "lax",
+//         path: "/",
+//       },
+//     },
+//   },
 
   // postlogin processing - optional customize and control the behavior of authentication — from signing in users, to modifying JWTs, to tweaking the session object.
   // 4 callbacks options: jwt , session, redirect , signIn
@@ -163,19 +171,14 @@ export const authOptions: NextAuthOptions = {
     async session({ token, session }) {
       // responsible for the session object we are able to use - triggered by useSessionHook & getServerSession ftn
       // user object is only available after login // not when checking session
-      console.log(token);
+      console.log("Session Callback received token:", token);
+      console.log("Session Callback received session:", session);
       // console.log(session) // observe it didnt have access & refresh token we will inject now
       session.user = token.user; // this will add user object to session object whe user is logged in
       session.accessToken = token.accessToken;
-      session.refreshToken = token.refreshToken;
-      console.log(session);
+      console.log(  "Session Callback session using token:", session);
       return session;
     },
   },
 };
 
-export async function getSession() {
-  console.log("Here");
-  console.log(authOptions);
-  return await getServerSession(authOptions);
-}

@@ -1,13 +1,11 @@
-// // utils/getSession.ts
-// "use server";
+// lib/getSession.ts
+"use server";
 
-// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-// import { getServerSession } from "next-auth";
-// import { cookies, headers } from "next/headers";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 
-// export async function getSession() {
-//   const cookieStore = cookies();
-//   const headerStore = headers();
-
-//   return await getServerSession({ req: { headers: headerStore }, options: authOptions });
-// }
+// ✅ This will only work in server components or server actions
+export async function getSession() {
+  const session = await getServerSession(authOptions);
+  return session;
+}

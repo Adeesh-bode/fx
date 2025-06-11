@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema, SignUptype } from "@/lib/validations/signup";
 import { BACKEND_URL } from "@/lib/constants/Env";
+import { signIn } from "next-auth/react";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -21,13 +22,23 @@ export default function SignUpPage() {
 
   const onSubmit = async (data: SignUptype) => {
     console.log("Form submitted:", data);
+
+    
     try{
-      const url = BACKEND_URL + "/auth/signup";
-      console.log("API URL:", url);
-      console.log("Data to be sent:", data);
-      const response = await axios.post(url, data,{ headers: { "Content-Type": "application/json" } });
-      console.log(response);
-      router.push("/");
+      // const url = BACKEND_URL + "/auth/signup";
+      // console.log("API URL:", url);
+      // console.log("Data to be sent:", data);
+      // const response = await axios.post(url, data,{ headers: { "Content-Type": "application/json" } });
+      // console.log(response);
+      // router.push("/");
+      const res = await signIn("register",{
+      email: data.email,
+      password: data.password,
+      name: data.name,
+    });
+
+    console.log(res);
+    if (!res?.ok) throw new Error('Invalid Credentials')
       toast.success("Signup successful!");
     }catch (error) {
       console.error("Error during signup:", error);
