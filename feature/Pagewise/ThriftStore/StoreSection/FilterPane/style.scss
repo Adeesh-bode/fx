@@ -1,0 +1,12 @@
+.filter-pane-inner {
+  @apply border p-4 rounded-md bg-white shadow-sm;
+}
+.filter-title {
+  @apply font-semibold mb-3;
+}
+.filter-list {
+  @apply flex flex-col gap-2;
+}
+.filter-item {
+  @apply text-left text-sm text-gray-700 px-2 py-1 rounded hover:bg-gray-100;
+}

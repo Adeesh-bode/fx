@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import "./style.scss";
 
-const categoryOptions = [
+export const categoryOptions = [
   { id: "clothing", label: "Clothing", icon: Shirt, description: "Shirts, dresses, jackets, pants" },
   { id: "footwear", label: "Footwear", icon: Footprints, description: "Shoes, boots, sneakers, sandals" },
   { id: "accessories", label: "Accessories", icon: Watch, description: "Watches, jewelry, belts, scarves" },
