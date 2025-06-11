@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 // import localFont from "next/font/local";
 import { Readex_Pro } from 'next/font/google';
-import "./globals.css";
+import "../globals.css";
 import Providers from "@/feature/Shared/auth/Providers";
 import { Toaster } from "@/components/ui/sooner";
 import Navbar from "@/feature/Shared/Navbar";
@@ -17,7 +17,7 @@ const ReadexPro = Readex_Pro({
 	weight: ['200', '300', '400', '500', '600', '700']
 })
 
-export default function RootLayout({
+export default function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -27,14 +27,12 @@ export default function RootLayout({
       <body
         className={`${ReadexPro.className} antialiased !bg-gradient h-screen w-screen`}
       > 
-        {/* <Toaster />
-         */}
-        {/* <Providers>  */}
-          {/* provide context for use session hook in entire applicatn */}
-        {/* <Navbar /> */}
+        <Toaster />
+        <Providers> {/* provide context for use session hook in entire applicatn */}
+        <Navbar />
         {/* <AuthButtons /> */}
           {children}
-        {/* </Providers> */}
+        </Providers>
       </body>
     </html>
   );
