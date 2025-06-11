@@ -3,7 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { signupSchema, SignUptype } from "@/lib/validations/signup";
+import { logInSchema , LogIntype } from "@/lib/validations/login";
+import { signIn } from "next-auth/react";
 
 export default function LogInPage() {
   const [serverMessage, setServerMessage] = useState<string | null>(null);
@@ -12,15 +13,29 @@ export default function LogInPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<SignUptype>({
-    resolver: zodResolver(signupSchema),
+  } = useForm<LogIntype>({
+    resolver: zodResolver(logInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
-  const onSubmit = async (data: SignUptype) => {
+  const onSubmit = async (data: LogIntype) => {
     console.log("Form submitted:", data);
 
+    const res = await signIn("login",{
+      email: data.email,
+      password: data.password,
+      redirect: true,
+    })
+
+    console.log(res);
+    if (!res?.ok) throw new Error('Invalid Credentials')
+
+
     setTimeout(() => {
-      setServerMessage(`Welcome, ${data.name}! Your account has been created.`);
+      setServerMessage(`Welcome, Successfully Logged In.`);
     }, 1000);
   };
 
@@ -32,15 +47,6 @@ export default function LogInPage() {
       className="flex flex-col gap-4 max-w-md mx-auto p-4 border-2 rounded-lg bg-white/40 backdrop-blur-lg shadow-lg"
       >
       <h1 className="text-center text-3xl font-bold text-black">Login In</h1>
-      <label>
-        Name:
-        <input
-          {...register("name")}
-          className="border p-2 w-full"
-          placeholder="Enter your name"
-        />
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-      </label>
 
       <label>
         Email:
@@ -71,7 +77,7 @@ export default function LogInPage() {
         disabled={isSubmitting}
         className="bg-blue-500 text-white p-2 rounded"
       >
-        {isSubmitting ? "Submitting..." : "Sign Up"}
+        {isSubmitting ? "Submitting..." : "Login In"}
       </button>
 
       {serverMessage && <p className="text-green-500">{serverMessage}</p>}
