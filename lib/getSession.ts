@@ -7,5 +7,6 @@ import { getServerSession } from "next-auth";
 // ✅ This will only work in server components or server actions
 export async function getSession() {
   const session = await getServerSession(authOptions);
+  console.log("getSession", session);
   return session;
 }

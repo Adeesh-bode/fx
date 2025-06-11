@@ -7,12 +7,17 @@ import { useRouter } from "next/navigation";
 
 const AuthButtons = () => {
   const router = useRouter();
-  const { data: session } = useSession(); // session as alias
-  console.log(session);
+  const { data } = useSession(); // session as alias
+  const session = data?.session;
+  // console.log("useSession raw output", useSession());
+
+  // console.log(data);
+  // console.log(session);
+  console.log(session?.user);
   if (session && session?.user) {
     return (
       <div className="flex gap-4 text-xl md:text-2xl">
-        <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.accessToken}</p>
+        {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.accessToken}</p> */}
         <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.name}</p>
         <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.email}</p>
         <Link

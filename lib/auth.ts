@@ -176,6 +176,7 @@ export const authOptions: NextAuthOptions = {
       // console.log(session) // observe it didnt have access & refresh token we will inject now
       session.user = token.user; // this will add user object to session object whe user is logged in
       session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
       console.log(  "Session Callback session using token:", session);
       return session;
     },

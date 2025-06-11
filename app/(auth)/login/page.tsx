@@ -5,9 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { logInSchema , LogIntype } from "@/lib/validations/login";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+
 
 export default function LogInPage() {
   const [serverMessage, setServerMessage] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const {
     register,
@@ -27,7 +32,8 @@ export default function LogInPage() {
     const res = await signIn("login",{
       email: data.email,
       password: data.password,
-      redirect: true,
+      redirect:true,
+      callbackUrl: callbackUrl,
     })
 
     console.log(res);
@@ -79,7 +85,7 @@ export default function LogInPage() {
       >
         {isSubmitting ? "Submitting..." : "Login In"}
       </button>
-
+      <p className=" text-center">Not Registered? <Link href={`/signup?callbackUrl=${callbackUrl}`}className="text-green-500" >Sign Up</Link></p>
       {serverMessage && <p className="text-green-500">{serverMessage}</p>}
     </form>
     </div>

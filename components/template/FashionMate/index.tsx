@@ -1,4 +1,5 @@
 import Hero from "@/components/molecule/Page/Products/FashionMate/Hero";
+// import Navbar from "@/feature/Shared/Navbar";
 import React from "react";
 
 const FashionMate = () => {
