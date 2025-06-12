@@ -126,6 +126,7 @@ const router = useRouter();
   };
 
   const toggleFilterSidebar = () => {
+    console.log(isFilterVisible);
     setIsFilterVisible(!isFilterVisible);
   };
 
@@ -135,7 +136,7 @@ const router = useRouter();
       <div className="search-section">
         <div className="search-bar">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+            {/* <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" /> */}
             <input
               type="text"
               placeholder="Search for vintage clothes, accessories, books..."
@@ -146,7 +147,7 @@ const router = useRouter();
           </div>
           <button
             onClick={toggleFilterSidebar}
-            className="filter-toggle-btn"
+            className="filter-toggle-btn "
           >
             <Filter className="w-5 h-5" />
             <span>Filters</span>

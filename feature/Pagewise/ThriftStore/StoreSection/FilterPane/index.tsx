@@ -61,7 +61,7 @@ const FilterPane: React.FC<FilterPaneProps> = ({
           <h2 className="text-lg font-semibold">Filters</h2>
           <button
             onClick={onToggle}
-            className="p-1 hover:bg-accent rounded-md"
+            className="filter-sidebar-close"
           >
             <X className="w-5 h-5" />
           </button>
