@@ -7,18 +7,18 @@ import { useRouter } from "next/navigation";
 import "./style.scss";
 
 export const categoryOptions = [
-  { id: "clothing", label: "Clothing", icon: Shirt, description: "Shirts, dresses, jackets, pants" },
-  { id: "footwear", label: "Footwear", icon: Footprints, description: "Shoes, boots, sneakers, sandals" },
-  { id: "accessories", label: "Accessories", icon: Watch, description: "Watches, jewelry, belts, scarves" },
-  { id: "eyewear", label: "Eyewear", icon: Glasses, description: "Sunglasses, reading glasses, frames" },
-  { id: "bags", label: "Bags & Purses", icon: Heart, description: "Handbags, backpacks, wallets, clutches" },
-  { id: "vintage", label: "Vintage & Designer", icon: Zap, description: "Unique vintage finds & designer pieces" },
+  { id: "Clothing", label: "Clothing", icon: Shirt, description: "Shirts, dresses, jackets, pants" },
+  { id: "Footwear", label: "Footwear", icon: Footprints, description: "Shoes, boots, sneakers, sandals" },
+  { id: "Accessories", label: "Accessories", icon: Watch, description: "Watches, jewelry, belts, scarves" },
+  { id: "Eyewear", label: "Eyewear", icon: Glasses, description: "Sunglasses, reading glasses, frames" },
+  { id: "Bags", label: "Bags & Purses", icon: Heart, description: "Handbags, backpacks, wallets, clutches" },
+  { id: "Vintage", label: "Vintage & Designer", icon: Zap, description: "Unique vintage finds & designer pieces" },
 ];
 
 const genderOptions = [
-  { id: "male", label: "Men's", icon: "👨", description: "Shirts, pants, jackets & more" },
-  { id: "female", label: "Women's", icon: "👩", description: "Dresses, tops, skirts & more" },
-  { id: "unisex", label: "Unisex", icon: "👤", description: "Suitable for everyone" },
+  { id: "Men", label: "Men's", icon: "👨", description: "Shirts, pants, jackets & more" },
+  { id: "Women", label: "Women's", icon: "👩", description: "Dresses, tops, skirts & more" },
+  { id: "Unisex", label: "Unisex", icon: "👤", description: "Suitable for everyone" },
 ];
 
 export default function ThriftSection() {

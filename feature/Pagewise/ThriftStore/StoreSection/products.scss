@@ -1,0 +1,115 @@
+.products-container {
+  @apply min-h-screen bg-white;
+}
+
+.search-section {
+  @apply bg-white border-b border-gray-200 p-4 shadow-sm;
+}
+
+.search-bar {
+  @apply flex items-center space-x-4 max-w-7xl mx-auto;
+}
+
+.search-input {
+  @apply flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+.filter-toggle-btn {
+  @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors flex items-center space-x-2;
+}
+
+.main-content {
+  @apply flex max-w-7xl mx-auto h-[calc(100vh-80px)];
+}
+
+.filter-sidebar {
+  @apply w-80 bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 ease-in-out;
+}
+
+.filter-sidebar.hidden {
+  @apply -ml-80;
+}
+
+.filter-header {
+  @apply p-4 border-b border-gray-200 bg-gray-100;
+}
+
+.filter-section {
+  @apply p-4 border-b border-gray-200;
+}
+
+.filter-title {
+  @apply font-semibold text-black mb-3;
+}
+
+.filter-option {
+  @apply flex items-center space-x-2 py-2 px-3 rounded-md hover:bg-gray-100 hover:text-black cursor-pointer transition-colors;
+}
+
+.filter-option.selected {
+  @apply bg-blue-100 text-blue-700 border border-blue-300;
+}
+
+.products-section {
+  @apply flex-1 overflow-y-auto p-6;
+}
+
+.products-header {
+  @apply flex items-center justify-between mb-6;
+}
+
+.results-count {
+  @apply text-gray-500;
+}
+
+.products-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8;
+}
+
+.product-card {
+  @apply bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer;
+}
+
+.product-card:hover {
+  @apply transform -translate-y-1 border-blue-300;
+}
+
+.product-image {
+  @apply w-full h-48 bg-gray-100 flex items-center justify-center text-gray-400;
+}
+
+.product-info {
+  @apply p-4;
+}
+
+.product-title {
+  @apply font-semibold text-black mb-1 line-clamp-2;
+}
+
+.product-category {
+  @apply text-sm text-gray-500 mb-2;
+}
+
+.product-price {
+  @apply text-lg font-bold text-blue-600;
+}
+
+.product-original-price {
+  @apply text-sm text-gray-400 line-through ml-2;
+}
+
+.pagination-container {
+  @apply flex justify-center items-center space-x-2 mt-8;
+}
+
+.pagination-btn {
+  @apply px-3 py-2 border border-gray-300 rounded-md bg-white text-black hover:bg-gray-100 hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.pagination-btn.active {
+  @apply bg-blue-600 text-white border-blue-600;
+}
+
+.no-products {
+  @apply text-center py-12 text-gray-500;
+}
