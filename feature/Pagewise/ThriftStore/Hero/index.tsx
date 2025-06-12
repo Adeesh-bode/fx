@@ -2,8 +2,11 @@
 import React from 'react';
 import { Sparkles, Heart, Recycle } from 'lucide-react';
 import './style.scss';
+// import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Hero = () => {
+  // const router = useRouter();
   return (
     <section className="hero-section">
       <div className="hero-content">
@@ -20,7 +23,9 @@ const Hero = () => {
           makes a difference for your wallet and the environment.
         </p>
         <div className="buttons">
-          <button className="btn-primary">Start Shopping</button>
+          {/* <button className="btn-primary" onClick={() => router.push('/store')}>Start Thrifting</button> */}
+          {/* <button className="btn-primary" onClick={() => router.push('/store')}>Start Thrifting</button> */}
+          <Link href={'/enjoy-thrifting/filter'} ><button className="btn-primary">Start Thrifting</button></Link>
           <button className="btn-secondary">Learn More</button>
         </div>
         <div className="features">

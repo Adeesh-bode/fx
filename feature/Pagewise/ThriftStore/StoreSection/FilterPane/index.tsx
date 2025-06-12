@@ -1,16 +1,15 @@
-import { categoryOptions } from "../../FilterSection";
-
+import './style.scss'
 export default function FilterPane() {
   return (
-    <div className="filter-pane-inner">
-      <h3 className="filter-title">Categories</h3>
-      <div className="filter-list">
-        {categoryOptions.map(({ id, label }) => (
-          <button key={id} className="filter-item">
-            {label}
-          </button>
-        ))}
-      </div>
+    <div>
+      <h3>Categories</h3>
+      <ul>
+        <li>Clothing</li>
+        <li>Accessories</li>
+        <li>Eyewear</li>
+        <li>Footwear</li>
+        <li>Vintage</li>
+      </ul>
     </div>
   );
 }
