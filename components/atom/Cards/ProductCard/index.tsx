@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import { ProductCardProps } from '@/utils/interface/props';
+import { ProductCardProps } from '@/lib/interface/props';
 import ProductCardContent from './ProductCardContent';
 
 
