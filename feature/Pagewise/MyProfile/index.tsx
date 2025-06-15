@@ -1,11 +1,17 @@
 "use client";
+// TODO: Current Tab push to query params for necessary renderings only
 import React, { useState } from "react";
-import Reviews from "./Reviews";
-import Orders from "./Orders";
-import MyProducts from "./MyProducts";
+import dynamic from "next/dynamic";
+
 import PersonalDetails from "./PersonalDetails";
-import Settings from "./Settings";
 import styles from "./style.module.scss";
+import FashionPreference from "./FashionPreferences";
+
+//  only load when that tab is active
+const Orders = dynamic(() => import("./Orders"));
+const MyProducts = dynamic(() => import("./MyProducts"));
+const Reviews = dynamic(() => import("./Reviews"));
+const Settings = dynamic(() => import("./Settings"));
 
 interface Tab {
   id: string;
@@ -21,6 +27,11 @@ const MyProfile = ({ userData }: { userData: any }) => {
       id: "personal",
       title: "Personal Details",
       content: <PersonalDetails userPersonalData={userData} />,
+    },
+    {
+      id: "preference",
+      title: "Fashion Preference",
+      content: <FashionPreference />,
     },
     {
       id: "products",

@@ -7,7 +7,7 @@ import styles from "./style.module.scss";
 
 const schema = z.object({
   profileImage: z.any().nullable(),
-  name: z.string().email("Invalid email address"),
+  name: z.string().min(3, "Name must be at least 3 characters"),
   anonymousName: z.string().nullable().optional(),
   gender: z.enum(["male", "female", "other"]).nullable().optional(),
   phoneNumber: z
@@ -19,9 +19,15 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const PersonalDetails = ({ userPersonalData }: { userPersonalData: FormData }) => {
+const PersonalDetails = ({
+  userPersonalData,
+}: {
+  userPersonalData: FormData;
+}) => {
   const [preview, setPreview] = useState<string | null>(
-    userPersonalData.profileImage ? URL.createObjectURL(userPersonalData.profileImage) : null
+    userPersonalData.profileImage
+      ? URL.createObjectURL(userPersonalData.profileImage)
+      : null
   );
 
   const {
@@ -34,9 +40,50 @@ const PersonalDetails = ({ userPersonalData }: { userPersonalData: FormData }) =
     defaultValues: userPersonalData,
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("PATCH data:", data);
-    // PATCH API call logic here
+  import { postV1, putV1 } from "@/lib/api/v1"; // adjust path if needed
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      let imageUrl = null;
+
+      // 1. Upload new profile image (if changed)
+      if (data.profileImage instanceof File) {
+        const formData = new FormData();
+        formData.append("image", data.profileImage);
+
+        const uploadRes = await postV1("/common/upload-image", formData);
+        if (uploadRes?.image_url) {
+          imageUrl = uploadRes.image_url;
+        } else {
+          throw new Error("Image upload failed");
+        }
+      } else {
+        // Keep the previous image if not updated
+        imageUrl = userPersonalData.profileImage;
+      }
+
+      // 2. Prepare the final payload
+      const payload = {
+        name: data.name,
+        anonymousName: data.anonymousName || null,
+        gender: data.gender || null,
+        phoneNumber: data.phoneNumber || null,
+        profileImage: imageUrl || null,
+      };
+
+      // 3. Update user details
+      const updateRes = await putV1("/users/update-personal-details", payload);
+
+      if (updateRes?.success || updateRes?.status === "ok") {
+        alert("Details updated successfully!");
+      } else {
+        console.warn("Unexpected response:", updateRes);
+        alert("Update may have failed. Please check console.");
+      }
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("Something went wrong while saving. Please try again.");
+    }
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +102,9 @@ const PersonalDetails = ({ userPersonalData }: { userPersonalData: FormData }) =
       <div className={styles.formField}>
         <label>Profile Image</label>
         <div className={styles.imageUploadWrapper}>
-          {preview && <img src={preview} alt="Preview" className={styles.imagePreview} />}
+          {preview && (
+            <img src={preview} alt="Preview" className={styles.imagePreview} />
+          )}
           <input
             type="file"
             accept="image/*"
@@ -65,17 +114,27 @@ const PersonalDetails = ({ userPersonalData }: { userPersonalData: FormData }) =
         </div>
       </div>
 
-      {/* Email */}
+      {/* Name */}
       <div className={styles.formField}>
-        <label>Email</label>
-        <input type="email" {...register("name")} className={styles.inputField} />
-        {errors.name && <p className={styles.errorText}>{errors.name.message}</p>}
+        <label>Name</label>
+        <input
+          type="text"
+          {...register("name")}
+          className={styles.inputField}
+        />
+        {errors.name && (
+          <p className={styles.errorText}>{errors.name.message}</p>
+        )}
       </div>
 
       {/* Anonymous Name */}
       <div className={styles.formField}>
         <label>Anonymous Name</label>
-        <input type="text" {...register("anonymousName")} className={styles.inputField} />
+        <input
+          type="text"
+          {...register("anonymousName")}
+          className={styles.inputField}
+        />
       </div>
 
       {/* Gender */}
@@ -92,7 +151,11 @@ const PersonalDetails = ({ userPersonalData }: { userPersonalData: FormData }) =
       {/* Phone Number */}
       <div className={styles.formField}>
         <label>Phone Number</label>
-        <input type="text" {...register("phoneNumber")} className={styles.inputField} />
+        <input
+          type="text"
+          {...register("phoneNumber")}
+          className={styles.inputField}
+        />
         {errors.phoneNumber && (
           <p className={styles.errorText}>{errors.phoneNumber.message}</p>
         )}
