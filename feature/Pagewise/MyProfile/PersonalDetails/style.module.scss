@@ -1,0 +1,35 @@
+.formContainer {
+  @apply w-full flex flex-col gap-2 ;
+}
+
+.heading {
+  @apply text-center text-3xl font-bold text-black;
+}
+
+.formField {
+  @apply flex flex-col gap-2;
+}
+
+.inputField {
+  @apply border border-gray-300 rounded px-3 py-2;
+}
+
+.inputFile {
+  @apply mt-2;
+}
+
+.imageUploadWrapper {
+  @apply flex flex-col items-start gap-1;
+}
+
+.imagePreview {
+  @apply w-24 h-24 object-cover rounded-full border border-gray-400;
+}
+
+.errorText {
+  @apply text-red-500 text-sm;
+}
+
+.submitButton {
+  @apply self-end bg-green-100 border-green-400 border text-green-900 font-medium px-4 py-2 rounded;
+}

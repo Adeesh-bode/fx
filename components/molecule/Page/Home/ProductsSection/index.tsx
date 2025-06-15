@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss'
 
 import ProductCard from '@/components/atom/Cards/ProductCard'
-import productCardDetails from '@/utils/constants/products'
-import { ProductCardI } from '@/utils/interface/shared'
+import productCardDetails from '@/lib/constants/products'
+import { ProductCardI } from '@/lib/interface/shared'
 import Image from 'next/image'
 
 const ProductsSection = () => {
@@ -23,10 +23,11 @@ const ProductsSection = () => {
 			</div> */}
 			<h2 className={styles.label}>
 				<span>
-					India&apos;s 1<sup>st</sup>
+					Revolutionizing Fashion with 
+					{/* India&apos;s 1<sup>st</sup> */}
 				</span>
-				<span>AI Powered</span>
-				<Image src={'/icons/electric_bolt.svg'} alt='Electric Bolt' width={40} height={40} />
+				<span>AI & Sustainability</span>
+				<Image src={'/icons/electric_bolt.svg'} alt='Electric Bolt' width={30} height={30} />
 			</h2>
 			<div className={styles.content}>
 				<h1 className={styles.heading}>FashionX</h1>

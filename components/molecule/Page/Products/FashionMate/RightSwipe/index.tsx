@@ -1,4 +1,7 @@
 "use client";
+
+// TODO: Add flaticon gif's for next & back -- public folder
+import { TiCancelOutline, TiTickOutline } from "react-icons/ti";
 import RightSwipeCard from "@/components/atom/Cards/RightSwipe";
 import React, { useState } from "react";
 
@@ -16,7 +19,7 @@ const RightSwipe = ({ matchesData }: { matchesData: any }) => {
     console.log("redirection");
     if (matches.length > 0) {
       const currentMatch = matches[0];
-      window.open(`/products/fashion-mate/${currentMatch.userId}`, "_blank");
+      window.open(`/find-your-fashion-mate/right-swipe/${currentMatch.userId}`, "_blank");
     }
   };
 
@@ -24,18 +27,18 @@ const RightSwipe = ({ matchesData }: { matchesData: any }) => {
 
   return (
     <div className="relative flex justify-center items-center h-full w-full">
-      <span className="text-[120px] cursor-pointer " onClick={handleNext}>
-        -
+      <span className="text-[90px] cursor-pointer " onClick={handleNext}>
+        <TiCancelOutline />
       </span>
       <div className="relative flex justify-center items-center h-2/3 overflow-hidden w-[40%]">
         {matches.length === 0 ? (
-          <span>No match</span>
+          <span>{ matches.length ==0 ? "No Matches Left" :  "No Match" }</span>
         ) : (
           <RightSwipeCard user={currentMatch} />
         )}
       </div>
       <span className="text-[120px] cursor-pointer" onClick={handleRedirection}>
-        +
+      <TiTickOutline />
       </span>
     </div>
   );
