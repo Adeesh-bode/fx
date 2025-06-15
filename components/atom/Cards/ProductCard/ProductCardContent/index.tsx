@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import { ProductDataI } from "@/utils/interface/shared";
+import { ProductDataI } from "@/lib/interface/shared";
 import { useRouter } from "next/navigation";
 
 const ProductCardContent = ({

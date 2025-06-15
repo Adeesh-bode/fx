@@ -1,46 +1,21 @@
-import { BACKEND_URL } from "@/utils/constants/Env";
+// this is used for /api/auth/(sign-in|sign-up|session)
+
+import { authOptions } from "@/lib/auth";
 import NextAuth, { NextAuthOptions } from "next-auth";
-import  CredentialsProvider  from "next-auth/providers/credentials";
 
-export const authOptions : NextAuthOptions = {
-    providers : [
-        CredentialsProvider({
-            name:"Credentials",
-            credentials:{
-                username :{
-                    label:"Username",
-                    type:"text",
-                    placeholder:"Rahul"
-                },
-                password: { label: "Password" , type:"password"}
-            },
-            async authorize(credentials) {
-              if(!credentials?.username || !credentials?.password ) return null;
-              const { username , password } = credentials;
-              const url = BACKEND_URL + "/auth/login"
-              const res = await fetch( url ,{
-                method:"POST",
-                body: JSON.stringify({
-                    username,
-                    password
-                }),
-                headers:{
-                    "Content-Type" : "application/json"
-                }
-              })
+const handler = NextAuth(authOptions); // it is handler for /api/auth/<anythinghere> uses auth options to process the request
+// why didnt we pass auth optiions directly to NextAuth?
+// why are we using using export handler?
 
-              if(res.status==401){
-                console.log(res.statusText)
-                return null  // this return is going to nextauth
-              }
-
-              const user = await res.json();
-              return user;
-            },
-        })
-    ]
-}
-
-const handler = NextAuth(authOptions);
+// 1 reason: we need access to nextauth session in the session( get server session ftn), this ftn require authoptions as argument
 
 export { handler as GET , handler as POST };
+
+// To know is the user is authenticated or not - have to get if any session exist from next auth( basically where frontent is running in a server)
+// Client side : use useSession Hook ( stores session in react context api) ( have to wrap app in context provider(credentialsProvider))
+// Server side : use getServerSession ftn ( for server components & also in api routes)
+
+
+// export async function getSession() {
+//     return await getServerSession(authOptions);
+// }

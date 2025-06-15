@@ -1,0 +1,32 @@
+.profileContainer {
+  @apply bg-white flex rounded-md lg:rounded-2xl min-h-full w-full md:w-[80%] lg:w-[70%] mx-auto py-5 md:py-10 lg:py-16;
+}
+
+.sidebar {
+  @apply flex-shrink-0 py-8 px-5 lg:px-8 w-full lg:w-[250px] lg:h-full flex lg:flex-col justify-between items-center lg:items-start gap-4 border-r border-black;
+}
+
+.avatarContainer {
+  @apply lg:w-full flex justify-center items-center;
+}
+
+.avatarImage {
+  @apply w-28 lg:w-36 rounded-full object-contain;
+}
+
+.tabList {
+  @apply flex flex-col gap-1 text-base md:text-lg pl-3 w-full;
+}
+
+.tabItem {
+  @apply cursor-pointer py-1 hover:text-green-300;
+}
+
+.activeTab {
+  @apply font-semibold text-green-500;
+}
+
+.tabContent {
+  @apply  w-full max-h-[450px] overflow-y-scroll px-[10%];
+}
+
