@@ -24,15 +24,19 @@ export async function getUser(token: string) {
 }
 
 async function refreshToken(token: JWT): Promise<JWT> {
-  const res = await fetch(BACKEND_URL + "auth/refresh", {
+  console.log("refreshing token: ", token);
+  console.log("refreshing token: ", token);
+  const res = await fetch(BACKEND_URL + "/auth/refresh", {
     method: "POST",
     headers: {
-      authorization: `Refresh ${token.refreshToken}`,
+      authorization: `Refresh ${token}`,
     },
   });
   console.log("refreshed");
 
   const response = await res.json();
+
+  console.log("refreshed", response);
 
   return {
     ...token,
@@ -160,12 +164,13 @@ export const authOptions: NextAuthOptions = {
 
       if (user) return { ...token, ...user }; // we have user object i.e immediately after login/signup 
       
+      if (new Date().getTime() < token.expiryAt) return token;
+      console.log("refreshing token- cause access token expired");
+      token = await refreshToken(token.refreshToken);
       token.user= await getUser(token.accessToken);
       console.log(token.user);
 
-      if (new Date().getTime() < token.expiryAt) return token;
-      console.log("refreshing token- cause access token expired");
-      return await refreshToken(token.refreshToken);
+      return token;
     },
 
     async session({ token, session }) {
@@ -177,6 +182,7 @@ export const authOptions: NextAuthOptions = {
       session.user = token.user; // this will add user object to session object whe user is logged in
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
+      console.log(session);
       console.log(  "Session Callback session using token:", session);
       return session;
     },

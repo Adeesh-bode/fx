@@ -9,7 +9,7 @@ const AuthButtons = () => {
   const router = useRouter();
   const { data } = useSession(); // session as alias
   const session = data?.session;
-  // console.log("useSession raw output", useSession());
+  console.log("useSession raw output", useSession());
 
   // console.log(data);
   // console.log(session);
