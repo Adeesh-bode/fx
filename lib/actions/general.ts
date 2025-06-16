@@ -55,12 +55,14 @@ export async function postV1(url: string, data: any) {
   try {
     const session = await getSession();
     console.log("Session:", session);
+    console.log("Data:", data);
 
     if (!session?.accessToken) {
       throw new Error("No access token in session");
     }
     console.log(session);
     const URL = `${BACKEND_URL}` + url;
+    console.log(URL);
     const response = await axios.post(URL, data, {
       headers: { "Cache-Control": "no-cache", Authorization: `Bearer ${session.accessToken}` },
     });

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./style.module.scss";
+import { postV1, putV1 } from "@/lib/actions/general";
 
 const schema = z.object({
   profileImage: z.any().nullable(),
@@ -40,7 +41,6 @@ const PersonalDetails = ({
     defaultValues: userPersonalData,
   });
 
-  import { postV1, putV1 } from "@/lib/api/v1"; // adjust path if needed
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -51,12 +51,14 @@ const PersonalDetails = ({
         const formData = new FormData();
         formData.append("image", data.profileImage);
 
-        const uploadRes = await postV1("/common/upload-image", formData);
-        if (uploadRes?.image_url) {
-          imageUrl = uploadRes.image_url;
-        } else {
-          throw new Error("Image upload failed");
-        }
+        // const uploadRes = await postV1("/common/upload-image", formData);
+        // if (uploadRes?.image_url) {
+        //   imageUrl = uploadRes.image_url;
+        // } else {
+        //   throw new Error("Image upload failed");
+        // }
+
+        // console.log(uploadRes);
       } else {
         // Keep the previous image if not updated
         imageUrl = userPersonalData.profileImage;
@@ -68,8 +70,10 @@ const PersonalDetails = ({
         anonymousName: data.anonymousName || null,
         gender: data.gender || null,
         phoneNumber: data.phoneNumber || null,
-        profileImage: imageUrl || null,
+        profileImage: imageUrl || '',
       };
+
+      console.log("Payload:", payload);
 
       // 3. Update user details
       const updateRes = await putV1("/users/update-personal-details", payload);
@@ -142,9 +146,9 @@ const PersonalDetails = ({
         <label>Gender</label>
         <select {...register("gender")} className={styles.inputField}>
           <option value="">Select</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Unisex">Unisex</option>
         </select>
       </div>
 

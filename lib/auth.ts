@@ -5,51 +5,54 @@ import { getServerSession } from "next-auth";
 import axios from "axios";
 import { JWT } from "next-auth/jwt";
 
-
 export async function getUser(token: string) {
   try {
     const url = `${BACKEND_URL}/auth/me`;
     console.log("Fetching user from:", url);
     const response = await axios.get(url, {
-      headers: { "Cache-Control": "no-cache",
+      headers: {
+        "Cache-Control": "no-cache",
         Authorization: `Bearer ${token}`,
-       },
+      },
     });
     console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error fetching user:", error);
-    return { error: "Failed to load user data."};
+    return { error: "Failed to load user data." };
   }
 }
 
 async function refreshToken(token: JWT): Promise<JWT> {
   console.log("refreshing token: ", token);
   console.log("refreshing token: ", token);
-  const res = await fetch(BACKEND_URL + "/auth/refresh", {
-    method: "POST",
-    headers: {
-      authorization: `Refresh ${token}`,
-    },
-  });
-  console.log("refreshed");
+  try {
+    const res = await fetch(BACKEND_URL + "/auth/refresh", {
+      method: "POST",
+      headers: {
+        authorization: `Refresh ${token}`,
+      },
+    });
+    console.log("refreshed");
 
-  const response = await res.json();
+    const response = await res.json();
 
-  console.log("refreshed", response);
-
-  return {
-    ...token,
-    expiresIn: new Date().getTime() + 15 * 60 * 1000,
-    refreshToken: response.refreshToken,
-    accessToken: response.accessToken,
-  };
+    console.log("refreshed", response);
+    return {
+      ...token,
+      expiresIn: new Date().getTime() + 15 * 60 * 1000,
+      refreshToken: response.refreshToken,
+      accessToken: response.accessToken,
+    };
+  } catch (e) {
+    console.log(e);
+    return token;
+  }
 }
 
-
 export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET, 
-    // credentials ,googgle github etc...
+  secret: process.env.NEXTAUTH_SECRET,
+  // credentials ,googgle github etc...
 
   providers: [
     CredentialsProvider({
@@ -115,14 +118,13 @@ export const authOptions: NextAuthOptions = {
           name,
         });
         console.log("Data to be sent:", data);
-        const res = await fetch( url, {
+        const res = await fetch(url, {
           method: "POST",
           body: data,
           headers: {
             "Content-Type": "application/json",
           },
         });
-
 
         if (res.status !== 201 && res.status !== 200) {
           console.log(res.statusText);
@@ -138,16 +140,16 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
-//   cookies: {
-//     sessionToken: {
-//       name: "fx",
-//       options: {
-//         httpOnly: true,
-//         sameSite: "lax",
-//         path: "/",
-//       },
-//     },
-//   },
+  //   cookies: {
+  //     sessionToken: {
+  //       name: "fx",
+  //       options: {
+  //         httpOnly: true,
+  //         sameSite: "lax",
+  //         path: "/",
+  //       },
+  //     },
+  //   },
 
   // postlogin processing - optional customize and control the behavior of authentication — from signing in users, to modifying JWTs, to tweaking the session object.
   // 4 callbacks options: jwt , session, redirect , signIn
@@ -162,12 +164,12 @@ export const authOptions: NextAuthOptions = {
       console.log(token);
       console.log(user);
 
-      if (user) return { ...token, ...user }; // we have user object i.e immediately after login/signup 
-      
+      if (user) return { ...token, ...user }; // we have user object i.e immediately after login/signup
+
       if (new Date().getTime() < token.expiryAt) return token;
       console.log("refreshing token- cause access token expired");
       token = await refreshToken(token.refreshToken);
-      token.user= await getUser(token.accessToken);
+      token.user = await getUser(token.accessToken);
       console.log(token.user);
 
       return token;
@@ -183,9 +185,8 @@ export const authOptions: NextAuthOptions = {
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
       console.log(session);
-      console.log(  "Session Callback session using token:", session);
+      console.log("Session Callback session using token:", session);
       return session;
     },
   },
 };
-
