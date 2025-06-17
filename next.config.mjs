@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.adesh.tech',
+        pathname: '**', // Allows all paths
+      },
+    ],
+  },
+};
 
 export default nextConfig;

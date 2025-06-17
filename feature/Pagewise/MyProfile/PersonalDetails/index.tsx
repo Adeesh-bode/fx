@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,7 +28,7 @@ const PersonalDetails = ({
   userId: string;
 }) => {
   const [preview, setPreview] = useState<string | null>(
-    userPersonalData.profileImage
+    (userPersonalData.profileImage && (userPersonalData.profileImage instanceof File))
       ? URL.createObjectURL(userPersonalData.profileImage)
       : null
   );
@@ -51,15 +51,18 @@ const PersonalDetails = ({
       if (data.profileImage instanceof File) {
         const timestamp = Date.now();
         const ext = data.profileImage.name.split(".").pop() || "jpg";
-        const newName = `${userId}_${timestamp}.${ext}`;
+        console.log("Timestamp:", ext);
+        const newName = `${data.profileImage.name.split(".")[0].replaceAll(" ","_")}_${timestamp}.${ext}`;
+        console.log(data.profileImage);
         const renamedFile = new File([data.profileImage], newName, {
           type: data.profileImage.type,
         });
 
         const formData = new FormData();
         formData.append("file", renamedFile);
-
-        const uploadRes = await postV1("/common/upload-image", formData);
+        
+        console.log(renamedFile);
+        const uploadRes = await postV1("/common/upload-file", formData);
         if (uploadRes?.image_url) {
           imageUrl = uploadRes.image_url;
         } else {
@@ -69,6 +72,8 @@ const PersonalDetails = ({
         // Keep existing image if unchanged
         imageUrl = userPersonalData.profileImage || "";
       }
+
+      console.log("Image URL:", imageUrl);
 
       // 2. Prepare payload
       const payload = {

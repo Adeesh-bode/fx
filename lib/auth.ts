@@ -178,8 +178,6 @@ export const authOptions: NextAuthOptions = {
       token.user = await getUser(token.accessToken); 
       console.log(token);
       console.log(token.user);
-        // return token;
-
       return token;
     },
 
