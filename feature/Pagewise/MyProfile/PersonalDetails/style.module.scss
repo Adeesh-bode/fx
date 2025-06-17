@@ -15,11 +15,11 @@
 }
 
 .inputFile {
-  @apply mt-2;
+  @apply mt-2 w-[250px];
 }
 
 .imageUploadWrapper {
-  @apply flex flex-col items-start gap-1;
+  @apply flex flex-col  items-center gap-1;
 }
 
 .imagePreview {

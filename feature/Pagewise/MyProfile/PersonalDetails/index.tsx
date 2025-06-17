@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,11 +27,18 @@ const PersonalDetails = ({
   userPersonalData: FormData;
   userId: string;
 }) => {
-  const [preview, setPreview] = useState<string | null>(
-    (userPersonalData.profileImage && (userPersonalData.profileImage instanceof File))
-      ? URL.createObjectURL(userPersonalData.profileImage)
-      : null
-  );
+  const [preview, setPreview] = useState<string | null>(null);
+
+useEffect(() => {
+  if (userPersonalData.profileImage) {
+    if (userPersonalData.profileImage instanceof File) {
+      setPreview(URL.createObjectURL(userPersonalData.profileImage));
+    } else if (typeof userPersonalData.profileImage === 'string') {
+      setPreview(userPersonalData.profileImage); // CDN URL
+    }
+  }
+}, [userPersonalData.profileImage]);
+
 
   const {
     register,
@@ -111,8 +118,8 @@ const PersonalDetails = ({
       <h1 className={styles.heading}>Personal Details</h1>
 
       {/* Profile Image */}
-      <div className={styles.formField}>
-        <label>Profile Image</label>
+      <div className={styles.formField} style={{alignSelf: 'center'}}>
+        {/* <label>Profile Image</label> */}
         <div className={styles.imageUploadWrapper}>
           {preview && (
             <img src={preview} alt="Preview" className={styles.imagePreview} />
