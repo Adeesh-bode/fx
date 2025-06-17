@@ -132,8 +132,9 @@ export const authOptions: NextAuthOptions = {
         }
         const user = await res.json();
         console.log(user);
-        const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
-        return { ...user, expiryAt };
+        // const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
+        // return { ...user, expiryAt }; // no need of custom expiry -- use default exp property by jwt
+        return user;
       },
     }),
   ],
@@ -165,13 +166,16 @@ export const authOptions: NextAuthOptions = {
       console.log(user);
 
       if (user) return { ...token, ...user }; // we have user object i.e immediately after login/signup
-
-      token.user = await getUser(token.accessToken);
-
-      if (new Date().getTime() < token.expiryAt) return token;
+      
+      console.log(token);
+      if (new Date().getTime() > token.exp) {
+        token = await refreshToken(token.refreshToken);
+        console.log(token);
+      }
+      token.user = await getUser(token.accessToken); 
+      console.log(token);
+        // return token;
       console.log("refreshing token- cause access token expired");
-      token = await refreshToken(token.refreshToken);
-      console.log(token.user);
 
       return token;
     },

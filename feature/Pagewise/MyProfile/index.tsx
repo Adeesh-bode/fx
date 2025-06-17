@@ -28,11 +28,11 @@ const MyProfile = ({ userData }: { userData: any }) => {
       title: "Personal Details",
       content: <PersonalDetails userPersonalData={userData} />,
     },
-    {
-      id: "preference",
-      title: "Fashion Preference",
-      content: <FashionPreference />,
-    },
+    // {
+    //   id: "preference",
+    //   title: "Fashion Preference",
+    //   content: <FashionPreference />,
+    // },
     {
       id: "products",
       title: "My Products",

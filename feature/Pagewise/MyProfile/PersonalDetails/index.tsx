@@ -10,7 +10,7 @@ const schema = z.object({
   profileImage: z.any().nullable(),
   name: z.string().min(3, "Name must be at least 3 characters"),
   anonymousName: z.string().nullable().optional(),
-  gender: z.enum(["male", "female", "other"]).nullable().optional(),
+  gender: z.enum(["Male", "Female", "Other"]).nullable().optional(),
   phoneNumber: z
     .string()
     .min(10, "Phone number must be at least 10 digits")

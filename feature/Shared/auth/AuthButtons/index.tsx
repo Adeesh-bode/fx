@@ -24,7 +24,7 @@ const AuthButtons = () => {
           <Image src={'/icons/in.png'} alt="Country Flag" width={40} height={40} className="w-10 h-10" />
         </span> */}
         {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.accessToken}</p> */}
-        {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.name}</p> */}
+        <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.name}</p>
         <span className="relative rounded-full overflow-hidden"   onClick={() => window.open('/my-profile', '_blank')}  >
           <Image src={session?.user?.image  || '/images/product/fashionx/avatar.png' } alt="Profile Image" width={40} height={40} className="w-10 h-10" />
         </span>
