@@ -3,12 +3,12 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Bell, LogOut } from "lucide-react";
 
 const AuthButtons = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const { data } = useSession(); // session as alias
   const session = data?.session;
   console.log("useSession raw output", useSession());
@@ -25,7 +25,7 @@ const AuthButtons = () => {
         </span> */}
         {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.accessToken}</p> */}
         {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.name}</p> */}
-        <span className="relative rounded-full overflow-hidden" onClick={()=>router.push("/my-profile")}  >
+        <span className="relative rounded-full overflow-hidden"   onClick={() => window.open('/my-profile', '_blank')}  >
           <Image src={session?.user?.image  || '/images/product/fashionx/avatar.png' } alt="Profile Image" width={40} height={40} className="w-10 h-10" />
         </span>
         {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.email}</p> */}
