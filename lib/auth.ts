@@ -9,6 +9,7 @@ export async function getUser(token: string) {
   try {
     const url = `${BACKEND_URL}/auth/me`;
     console.log("Fetching user from:", url);
+    console.log("Token:", token);
     const response = await axios.get(url, {
       headers: {
         "Cache-Control": "no-cache",
@@ -90,10 +91,11 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        const user = await res.json();
-        console.log(user);
-        const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
-        return { ...user, expiryAt };
+        const token = await res.json();
+        console.log(token);
+        // const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
+        // return { ...user, expiryAt };
+        return token;
       },
     }),
     CredentialsProvider({
@@ -130,11 +132,11 @@ export const authOptions: NextAuthOptions = {
           console.log(res.statusText);
           throw new Error("error:" + res.statusText);
         }
-        const user = await res.json();
-        console.log(user);
+        const token = await res.json();
+        console.log(token);
         // const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
         // return { ...user, expiryAt }; // no need of custom expiry -- use default exp property by jwt
-        return user;
+        return token;
       },
     }),
   ],
@@ -159,7 +161,7 @@ export const authOptions: NextAuthOptions = {
   // when checking session :: only session callback is called
   callbacks: {
     // JWT runs than ---> Session runs ( session needs jwt coz of props dependency i.e token param)
-    async jwt({ token, user }) {
+    async jwt({ token, user }) {  // user object will exist only when login or signup just now
       // for sigin it passes token and user object , if session check passes only token
       // after jwt callback, session callback work
       console.log(token);
