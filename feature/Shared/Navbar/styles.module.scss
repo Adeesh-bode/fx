@@ -1,3 +1,12 @@
 .navbar{
-    @apply w-full fixed flex justify-end px-8 py-3;
+    @apply w-full fixed flex  items-center px-8 py-3;
+
+    .logo{
+        @apply text-2xl md:text-4xl font-bold text-black;
+        // @apply text-2xl md:text-4xl font-bold text-green-500;
+        span{
+            @apply text-green-500;
+            // @apply text-black;
+        }
+    }
 }
