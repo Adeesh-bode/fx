@@ -168,14 +168,15 @@ export const authOptions: NextAuthOptions = {
       if (user) return { ...token, ...user }; // we have user object i.e immediately after login/signup
       
       console.log(token);
-      if (new Date().getTime() > token.exp) {
+      if (new Date().getTime() > token.exp * 1000) {  // FIXED: issue happen backend exp in second and get TIme checking in milliseconds
+        console.log("refreshing token- cause access token expired");
         token = await refreshToken(token.refreshToken);
         console.log(token);
       }
       token.user = await getUser(token.accessToken); 
       console.log(token);
+      console.log(token.user);
         // return token;
-      console.log("refreshing token- cause access token expired");
 
       return token;
     },

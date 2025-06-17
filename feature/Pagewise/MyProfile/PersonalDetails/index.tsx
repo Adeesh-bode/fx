@@ -45,20 +45,23 @@ const PersonalDetails = ({
   const onSubmit = async (data: FormData) => {
     try {
       let imageUrl = null;
-
+      console.log(data);
+      
       // 1. Upload new profile image (if changed)
       if (data.profileImage instanceof File) {
         const formData = new FormData();
         formData.append("image", data.profileImage);
+        console.log("Form Data:", formData); // wont be able to see the image as file becomes ennumerable by default in formdata object
+        
+        const uploadRes = await postV1("/common/upload-image", formData);
 
-        // const uploadRes = await postV1("/common/upload-image", formData);
-        // if (uploadRes?.image_url) {
-        //   imageUrl = uploadRes.image_url;
-        // } else {
-        //   throw new Error("Image upload failed");
-        // }
+        if (uploadRes?.image_url) {
+          imageUrl = uploadRes.image_url;
+        } else {
+          throw new Error("Image upload failed");
+        }
 
-        // console.log(uploadRes);
+        console.log(uploadRes);
       } else {
         // Keep the previous image if not updated
         imageUrl = userPersonalData.profileImage;
