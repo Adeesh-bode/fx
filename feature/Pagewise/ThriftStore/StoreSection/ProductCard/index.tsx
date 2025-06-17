@@ -22,7 +22,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const router = useRouter();
   return (
-    <div className="product-card group" onClick={()=> router.push(`/thrifting/store/${product.id}`)}>
+    <div className="product-card group" onClick={()=> router.push(`/enjoy-thrifting/store/${product.id}`)}>
       <div className="product-image relative">
         <div className="absolute top-2 right-2 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <button className="p-2 bg-background rounded-full shadow-md hover:bg-accent">

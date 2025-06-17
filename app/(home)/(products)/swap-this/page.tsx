@@ -1,8 +1,11 @@
+import ComingSoon from '@/feature/Shared/ComingSoon'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <>
+        <ComingSoon />
+    </>
   )
 }
 
