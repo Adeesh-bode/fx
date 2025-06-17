@@ -22,8 +22,10 @@ type FormData = z.infer<typeof schema>;
 
 const PersonalDetails = ({
   userPersonalData,
+  userId,
 }: {
   userPersonalData: FormData;
+  userId: string;
 }) => {
   const [preview, setPreview] = useState<string | null>(
     userPersonalData.profileImage
@@ -41,46 +43,44 @@ const PersonalDetails = ({
     defaultValues: userPersonalData,
   });
 
-
   const onSubmit = async (data: FormData) => {
     try {
       let imageUrl = null;
-      console.log(data);
-      
-      // 1. Upload new profile image (if changed)
-      if (data.profileImage instanceof File) {
-        const formData = new FormData();
-        formData.append("image", data.profileImage);
-        console.log("Form Data:", formData); // wont be able to see the image as file becomes ennumerable by default in formdata object
-        
-        const uploadRes = await postV1("/common/upload-image", formData);
 
+      // 1. If a new file is selected, rename and upload it
+      if (data.profileImage instanceof File) {
+        const timestamp = Date.now();
+        const ext = data.profileImage.name.split(".").pop() || "jpg";
+        const newName = `${userId}_${timestamp}.${ext}`;
+        const renamedFile = new File([data.profileImage], newName, {
+          type: data.profileImage.type,
+        });
+
+        const formData = new FormData();
+        formData.append("file", renamedFile);
+
+        const uploadRes = await postV1("/common/upload-image", formData);
         if (uploadRes?.image_url) {
           imageUrl = uploadRes.image_url;
         } else {
           throw new Error("Image upload failed");
         }
-
-        console.log(uploadRes);
       } else {
-        // Keep the previous image if not updated
-        imageUrl = userPersonalData.profileImage;
+        // Keep existing image if unchanged
+        imageUrl = userPersonalData.profileImage || "";
       }
 
-      // 2. Prepare the final payload
+      // 2. Prepare payload
       const payload = {
         name: data.name,
         anonymousName: data.anonymousName || null,
         gender: data.gender || null,
         phoneNumber: data.phoneNumber || null,
-        profileImage: imageUrl || '',
+        profileImage: imageUrl,
       };
 
-      console.log("Payload:", payload);
-
-      // 3. Update user details
+      // 3. Update API
       const updateRes = await putV1("/users/update-personal-details", payload);
-
       if (updateRes?.success || updateRes?.status === "ok") {
         alert("Details updated successfully!");
       } else {
@@ -121,7 +121,7 @@ const PersonalDetails = ({
         </div>
       </div>
 
-      {/* Name */}
+      {/* Name, gender, phone fields... */}
       <div className={styles.formField}>
         <label>Name</label>
         <input
@@ -134,7 +134,6 @@ const PersonalDetails = ({
         )}
       </div>
 
-      {/* Anonymous Name */}
       <div className={styles.formField}>
         <label>Anonymous Name</label>
         <input
@@ -144,18 +143,16 @@ const PersonalDetails = ({
         />
       </div>
 
-      {/* Gender */}
       <div className={styles.formField}>
         <label>Gender</label>
         <select {...register("gender")} className={styles.inputField}>
           <option value="">Select</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
-          <option value="Unisex">Unisex</option>
+          <option value="Other">Other</option>
         </select>
       </div>
 
-      {/* Phone Number */}
       <div className={styles.formField}>
         <label>Phone Number</label>
         <input
@@ -168,7 +165,6 @@ const PersonalDetails = ({
         )}
       </div>
 
-      {/* Submit */}
       <button type="submit" className={styles.submitButton}>
         Save Changes
       </button>

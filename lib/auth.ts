@@ -31,7 +31,7 @@ async function refreshToken(token: JWT): Promise<JWT> {
     const res = await fetch(BACKEND_URL + "/auth/refresh", {
       method: "POST",
       headers: {
-        authorization: `Refresh ${token}`,
+        authorization: `Refresh ${token.refreshToken}`,
       },
     });
     console.log("refreshed");
@@ -41,7 +41,7 @@ async function refreshToken(token: JWT): Promise<JWT> {
     console.log("refreshed", response);
     return {
       ...token,
-      expiresIn: new Date().getTime() + 15 * 60 * 1000,
+      expiryAt: new Date().getTime() + 24 * 60 * 60 * 1000,
       refreshToken: response.refreshToken,
       accessToken: response.accessToken,
     };
@@ -93,9 +93,8 @@ export const authOptions: NextAuthOptions = {
 
         const token = await res.json();
         console.log(token);
-        // const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
-        // return { ...user, expiryAt };
-        return token;
+        const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
+        return { ...token, expiryAt };
       },
     }),
     CredentialsProvider({
@@ -134,9 +133,9 @@ export const authOptions: NextAuthOptions = {
         }
         const token = await res.json();
         console.log(token);
-        // const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
-        // return { ...user, expiryAt }; // no need of custom expiry -- use default exp property by jwt
-        return token;
+        const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
+        console.log("expiryAt:", expiryAt);
+        return { ...token, expiryAt };
       },
     }),
   ],
@@ -170,10 +169,11 @@ export const authOptions: NextAuthOptions = {
       if (user) return { ...token, ...user }; // we have user object i.e immediately after login/signup
       
       console.log(token);
-      if (new Date().getTime() > token.exp * 1000) {  // FIXED: issue happen backend exp in second and get TIme checking in milliseconds
+      if (new Date().getTime() > token.expiryAt ) {  // FIXED: issue happen backend exp in second and get TIme checking in milliseconds
         console.log("refreshing token- cause access token expired");
-        token = await refreshToken(token.refreshToken);
+        token = await refreshToken(token);
         console.log(token);
+        console.log(token.accessToken);
       }
       token.user = await getUser(token.accessToken); 
       console.log(token);

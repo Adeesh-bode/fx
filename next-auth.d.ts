@@ -12,7 +12,7 @@ declare module "next-auth" {
         };
         accessToken: string;
         refreshToken: string;
-        expiresIn: number;
+        expiryAt: number;
         tokenType: string;
     }
 }
@@ -29,7 +29,7 @@ declare module "next-auth/jwt" {
         };
         accessToken: string;
         refreshToken: string;
-        expiresIn: number;
+        expiryAt: number;
         tokenType: string;
     }
 }
