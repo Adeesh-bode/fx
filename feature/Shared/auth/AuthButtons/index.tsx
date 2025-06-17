@@ -1,9 +1,11 @@
 "use client"
 // import { signOut } from "next-auth/react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { Bell, LogOut } from "lucide-react";
 
 const AuthButtons = () => {
   const router = useRouter();
@@ -12,21 +14,29 @@ const AuthButtons = () => {
   console.log("useSession raw output", useSession());
 
   // console.log(data);
-  // console.log(session);
+  console.log(session);
   console.log(session?.user);
   if (session && session?.user) {
     return (
-      <div className="flex gap-4 text-xl md:text-2xl">
+      <div className="flex items-center gap-4 text-xl md:text-2xl">
+        <Bell color="white" size={30} />
+        {/* <span className="relative" >
+          <Image src={'/icons/in.png'} alt="Country Flag" width={40} height={40} className="w-10 h-10" />
+        </span> */}
         {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.accessToken}</p> */}
-        <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.name}</p>
+        {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.name}</p> */}
+        <span className="relative rounded-full overflow-hidden" onClick={()=>router.push("/my-profile")}  >
+          <Image src={session?.user?.image  || '/images/product/fashionx/avatar.png' } alt="Profile Image" width={40} height={40} className="w-10 h-10" />
+        </span>
         {/* <p className="text-gray-600 " onClick={()=>router.push("/my-profile")}  >{session?.user?.email}</p> */}
-        <Link
-          // onClick={()=>signOut()}
-          href="/api/auth/signout"
-          className="flex gap-4 text-red-500"
+        <span
+          onClick={()=>signOut()}
+          // href="/api/auth/signout"
+          className="flex gap-4 text-red-500 cursor-pointer"
         >
-          Sign Out
-        </Link>
+          {/* Sign Out */}
+          <LogOut color="white" size={30} />
+        </span>
       </div>
     );
   }

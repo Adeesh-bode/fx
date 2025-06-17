@@ -1,0 +1,6 @@
+.container{
+    @apply w-full min-h-full flex justify-center items-center;
+    h1{
+        @apply text-4xl  font-semibold text-center;
+    }
+}

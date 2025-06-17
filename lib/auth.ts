@@ -166,10 +166,11 @@ export const authOptions: NextAuthOptions = {
 
       if (user) return { ...token, ...user }; // we have user object i.e immediately after login/signup
 
+      token.user = await getUser(token.accessToken);
+
       if (new Date().getTime() < token.expiryAt) return token;
       console.log("refreshing token- cause access token expired");
       token = await refreshToken(token.refreshToken);
-      token.user = await getUser(token.accessToken);
       console.log(token.user);
 
       return token;
@@ -177,6 +178,7 @@ export const authOptions: NextAuthOptions = {
 
     async session({ token, session }) {
       // responsible for the session object we are able to use - triggered by useSessionHook & getServerSession ftn
+      // console.log(token);
       // user object is only available after login // not when checking session
       console.log("Session Callback received token:", token);
       console.log("Session Callback received session:", session);
@@ -185,7 +187,6 @@ export const authOptions: NextAuthOptions = {
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
       console.log(session);
-      console.log("Session Callback session using token:", session);
       return session;
     },
   },

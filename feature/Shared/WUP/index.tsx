@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './style.module.scss'
-const ComingSoon = ({content="Coming Soon!"}: {content?: string}) => {
+const WUP = ({content="Work Under Progress!"}: {content?: string}) => {
   return (
     <div className={styles.container}>
         <h1>{content}</h1>
@@ -8,4 +8,4 @@ const ComingSoon = ({content="Coming Soon!"}: {content?: string}) => {
   )
 }
 
-export default ComingSoon
+export default WUP

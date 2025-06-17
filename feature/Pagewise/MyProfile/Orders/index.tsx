@@ -1,9 +1,13 @@
-import React from 'react'
+import WUP from "@/feature/Shared/WUP";
+import React from "react";
 
 const Orders = () => {
   return (
-    <div>Orders</div>
-  )
-}
+    <div>
+      
+      <WUP />
+    </div>
+  );
+};
 
-export default Orders
+export default Orders;

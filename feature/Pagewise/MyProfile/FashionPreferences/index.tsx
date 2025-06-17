@@ -1,8 +1,9 @@
+import WUP from '@/feature/Shared/WUP';
 import React from 'react'
 
 const FashionPreference = () => {
   return (
-    <div>FashionPreference</div>
+    <div><WUP /></div>
   )
 }
 

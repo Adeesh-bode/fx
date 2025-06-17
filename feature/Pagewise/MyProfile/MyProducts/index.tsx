@@ -1,8 +1,12 @@
+import ComingSoon from '@/feature/Shared/ComingSoon';
+import WUP from '@/feature/Shared/WUP';
 import React from 'react'
 
 const MyProducts = () => {
   return (
-    <div>MyProducts</div>
+    <div>
+      <WUP />
+    </div>
   )
 }
 

@@ -1,8 +1,11 @@
+import WUP from '@/feature/Shared/WUP'
 import React from 'react'
 
 const Reviews = () => {
   return (
-    <div>Reviews</div>
+    <div>
+            <WUP />
+    </div>
   )
 }
 

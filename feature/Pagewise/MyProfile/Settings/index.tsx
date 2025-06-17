@@ -1,8 +1,11 @@
+import WUP from '@/feature/Shared/WUP'
 import React from 'react'
 
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <div>
+      <WUP />
+    </div>
   )
 }
 
