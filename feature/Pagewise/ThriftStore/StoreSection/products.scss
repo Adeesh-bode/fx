@@ -1,9 +1,9 @@
 .products-container {
-  @apply min-h-screen bg-white pt-14 lg:pt-0;
+  @apply min-h-screen bg-white pt-14 lg:pt-16;
 }
 
 .search-section {
-  @apply bg-white border-b border-gray-200 p-4 shadow-sm;
+  @apply bg-white border-t border-gray-200 p-4 shadow-sm;
 }
 
 .search-bar {
@@ -58,7 +58,7 @@
 }
 
 .products-section {
-  @apply flex-1 overflow-y-auto p-6;
+  @apply flex-1 overflow-y-auto p-6 ;
 }
 
 .products-header {

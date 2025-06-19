@@ -1,3 +1,4 @@
+// FIXME: Improve cards hovering details show and zoom in effect image 
 "use client";
 
 import React, { useState } from "react";
