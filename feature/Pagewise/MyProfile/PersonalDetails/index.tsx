@@ -22,23 +22,20 @@ type FormData = z.infer<typeof schema>;
 
 const PersonalDetails = ({
   userPersonalData,
-  userId,
 }: {
   userPersonalData: FormData;
-  userId: string;
 }) => {
   const [preview, setPreview] = useState<string | null>(null);
 
-useEffect(() => {
-  if (userPersonalData.profileImage) {
-    if (userPersonalData.profileImage instanceof File) {
-      setPreview(URL.createObjectURL(userPersonalData.profileImage));
-    } else if (typeof userPersonalData.profileImage === 'string') {
-      setPreview(userPersonalData.profileImage); // CDN URL
+  useEffect(() => {
+    if (userPersonalData.profileImage) {
+      if (userPersonalData.profileImage instanceof File) {
+        setPreview(URL.createObjectURL(userPersonalData.profileImage));
+      } else if (typeof userPersonalData.profileImage === "string") {
+        setPreview(userPersonalData.profileImage); // CDN URL
+      }
     }
-  }
-}, [userPersonalData.profileImage]);
-
+  }, [userPersonalData.profileImage]);
 
   const {
     register,
@@ -59,7 +56,9 @@ useEffect(() => {
         const timestamp = Date.now();
         const ext = data.profileImage.name.split(".").pop() || "jpg";
         console.log("Timestamp:", ext);
-        const newName = `${data.profileImage.name.split(".")[0].replaceAll(" ","_")}_${timestamp}.${ext}`;
+        const newName = `${data.profileImage.name
+          .split(".")[0]
+          .replaceAll(" ", "_")}_${timestamp}.${ext}`;
         console.log(data.profileImage);
         const renamedFile = new File([data.profileImage], newName, {
           type: data.profileImage.type,
@@ -67,7 +66,7 @@ useEffect(() => {
 
         const formData = new FormData();
         formData.append("file", renamedFile);
-        
+
         console.log(renamedFile);
         const uploadRes = await postV1("/common/upload-file", formData);
         if (uploadRes?.image_url) {
@@ -114,12 +113,12 @@ useEffect(() => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+    <section className={styles.wrapper}>
       <h1 className={styles.heading}>Personal Details</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+        {/* <h1 className={styles.heading}>Personal Details</h1> */}
 
-      {/* Profile Image */}
-      <div className={styles.formField} style={{alignSelf: 'center'}}>
-        {/* <label>Profile Image</label> */}
+        {/* Profile Image Upload */}
         <div className={styles.imageUploadWrapper}>
           {preview && (
             <img src={preview} alt="Preview" className={styles.imagePreview} />
@@ -131,56 +130,56 @@ useEffect(() => {
             className={styles.inputFile}
           />
         </div>
-      </div>
 
-      {/* Name, gender, phone fields... */}
-      <div className={styles.formField}>
-        <label>Name</label>
-        <input
-          type="text"
-          {...register("name")}
-          className={styles.inputField}
-        />
+        {/* Name */}
+        <div className={styles.formRow}>
+          <label className={styles.label}>Name</label>
+          <input type="text" {...register("name")} className={styles.input} />
+        </div>
         {errors.name && (
           <p className={styles.errorText}>{errors.name.message}</p>
         )}
-      </div>
 
-      <div className={styles.formField}>
-        <label>Anonymous Name</label>
-        <input
-          type="text"
-          {...register("anonymousName")}
-          className={styles.inputField}
-        />
-      </div>
+        {/* Anonymous Name */}
+        <div className={styles.formRow}>
+          <label className={styles.label}>Anonymous Name</label>
+          <input
+            type="text"
+            {...register("anonymousName")}
+            className={styles.input}
+          />
+        </div>
 
-      <div className={styles.formField}>
-        <label>Gender</label>
-        <select {...register("gender")} className={styles.inputField}>
-          <option value="">Select</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
+        {/* Gender */}
+        <div className={styles.formRow}>
+          <label className={styles.label}>Gender</label>
+          <select {...register("gender")} className={styles.select}>
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-      <div className={styles.formField}>
-        <label>Phone Number</label>
-        <input
-          type="text"
-          {...register("phoneNumber")}
-          className={styles.inputField}
-        />
+        {/* Phone Number */}
+        <div className={styles.formRow}>
+          <label className={styles.label}>Phone Number</label>
+          <input
+            type="text"
+            {...register("phoneNumber")}
+            className={styles.input}
+          />
+        </div>
         {errors.phoneNumber && (
           <p className={styles.errorText}>{errors.phoneNumber.message}</p>
         )}
-      </div>
 
-      <button type="submit" className={styles.submitButton}>
-        Save Changes
-      </button>
-    </form>
+        {/* Submit Button */}
+        <button type="submit" className={styles.submitButton}>
+          Save Changes
+        </button>
+      </form>
+    </section>
   );
 };
 

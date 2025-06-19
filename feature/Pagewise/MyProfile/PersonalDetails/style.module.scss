@@ -1,3 +1,6 @@
+.wrapper{
+  @apply flex flex-col gap-4 w-full overflow-y-auto;
+}
 .formContainer {
   @apply w-full flex flex-col gap-2 ;
 }
@@ -6,24 +9,31 @@
   @apply text-center text-3xl font-bold text-black;
 }
 
-.formField {
-  @apply flex flex-col gap-2;
+.formRow {
+  @apply flex justify-between items-center gap-4;
 }
 
-.inputField {
+.label {
+  @apply text-base font-medium text-gray-700;
+  width: 35%;
+}
+
+.input,
+.select {
   @apply border border-gray-300 rounded px-3 py-2;
-}
-
-.inputFile {
-  @apply mt-2 w-[250px];
+  width: 65%;
 }
 
 .imageUploadWrapper {
-  @apply flex flex-col  items-center gap-1;
+  @apply flex flex-col items-center gap-2;
 }
 
 .imagePreview {
   @apply w-24 h-24 object-cover rounded-full border border-gray-400;
+}
+
+.inputFile {
+  @apply mt-1;
 }
 
 .errorText {
