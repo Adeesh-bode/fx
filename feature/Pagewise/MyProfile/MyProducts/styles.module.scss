@@ -1,0 +1,41 @@
+.wrapper {
+  @apply flex flex-col gap-6 w-full;
+}
+
+.heading {
+  @apply text-center text-3xl font-bold text-black;
+}
+
+.topBar {
+  @apply flex justify-between items-center;
+}
+
+.dropdown {
+  @apply border border-gray-300 rounded px-3 py-2;
+}
+
+.addBtn {
+  @apply bg-green-100 border border-green-400 text-green-900 font-medium px-4 py-2 rounded;
+}
+
+.grid {
+  display: grid;
+  @apply grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+}
+
+.card {
+  @apply relative w-full aspect-square overflow-hidden rounded-md shadow;
+}
+
+.productImage {
+  @apply w-full h-full object-cover;
+}
+
+.overlay {
+  @apply absolute bottom-0 left-0 right-0 bg-white bg-opacity-60 text-black text-center p-2 text-sm;
+  backdrop-filter: blur(2px);
+}
+
+.productName {
+  @apply font-semibold;
+}
