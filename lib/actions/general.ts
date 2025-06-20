@@ -16,6 +16,7 @@ export async function getV1(url: string) {
     }
     console.log(session);
     const URL = `${BACKEND_URL}`+ url;
+    console.log(URL);
     const response = await axios.get(URL, {
       headers: { "Cache-Control": "no-cache", Authorization: `Bearer ${session.accessToken}` },
     });

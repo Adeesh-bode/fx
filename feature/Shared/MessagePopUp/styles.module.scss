@@ -1,0 +1,16 @@
+.container{
+    @apply w-11/12 lg:w-1/3 h-fit overflow-hidden flex flex-col justify-between items-center rounded-2xl bg-[#F2F3F3] p-4 lg:p-5 gap-3 lg:gap-6 ;
+    
+
+    .check{
+        @apply p-3 rounded-full bg-green-600 flex justify-center items-center;
+    }
+
+    h1{
+        @apply font-semibold text-base lg:text-4xl text-center;
+    }
+
+    desc{
+        @apply text-sm lg:text-xl text-center text-gray-700;
+    }
+}
