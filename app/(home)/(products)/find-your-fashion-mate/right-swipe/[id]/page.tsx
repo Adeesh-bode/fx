@@ -25,6 +25,7 @@ const templateMessages = [
 
 const ExchangeMatePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  console.log(id);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [userData, setUserData] = useState<any>(null);
