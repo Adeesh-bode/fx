@@ -17,7 +17,7 @@ const schema = z.object({
   age: z.number().min(1, "Age must be at least 1"),
   weight: z.number().min(1, "Weight must be at least 1"),
   height: z.number().min(1, "Height must be at least 1"),
-  type: z.enum(preferenceEnum),
+  preferenceType: z.enum(preferenceEnum),
   preferedColor: z.enum(colorEnum),
 });
 
@@ -31,7 +31,7 @@ const ReviewPreference = () => {
       age: 23,
       weight: 80,
       height: 180,
-      type: "Casual",
+      preferenceType: "Casual",
       preferedColor: "Red",
     }
   });
@@ -77,11 +77,11 @@ const ReviewPreference = () => {
         <p className='text-red-500'>{errors.height?.message}</p>
 
         <label className='flex justify-between text-nowrap gap-4 ' >Preference Type:
-          <select className='w-[150px] border ' {...register("type")}>
+          <select className='w-[150px] border ' {...register("preferenceType")}>
             {preferenceEnum.map(pref => <option key={pref} value={pref}>{pref}</option>)}
           </select>
         </label>
-        <p className='text-red-500'>{errors.type?.message}</p>
+        <p className='text-red-500'>{errors.preferenceType?.message}</p>
 
         <label className='flex justify-between text-nowrap gap-4 ' >Preferred Color:
           <select className='w-[150px] border ' {...register("preferedColor")}>

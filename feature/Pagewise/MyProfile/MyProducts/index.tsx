@@ -9,7 +9,7 @@ export interface AccessoryI {
   id: string; // Assuming each product has a unique id
   accessoryName: string;
   imageUrl: string;
-  accessoryType: "Casual" | "Formal" | "Funky" | "Sporty" | "Traditional" | "Streetwear";
+  accessoryType: "Clothing" | "Footwear" |"Watch" |"Handbag" |"Belt" |"Scarf" |"Sunglasses" |"Jewelry" | "Hat" |"Techwear";
   accessoryColor: "Red" | "Blue" | "Green" | "Yellow" | "Orange" | "Purple" | "Pink" | "Brown" | "Black" | "White" | "Grey";
   accessorySize: "XS" | "S" | "M" | "L" | "XL" | "XXL" | "SIZENOTREQUIRED";
 }
