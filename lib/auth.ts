@@ -134,7 +134,7 @@ export const authOptions: NextAuthOptions = {
         const token = await res.json();
         console.log(token);
         const expiryAt = new Date().getTime() + 24 * 60 * 60 * 1000;
-        console.log("expiryAt:", expiryAt);
+        console.log("expiryAt:", expiryAt.toLocaleString());
         return { ...token, expiryAt };
       },
     }),

@@ -33,6 +33,8 @@ const Hero = () => {
                 <li>Exchange accessories effortlessly—from scarves and hats to jewelry and more.</li>
                 <li>Experience a personalized and seamless journey powered by AI, designed to bring your style dreams to life.</li>
               </ul> */}
+              <p><strong>Instruction:</strong>
+                <br />FashionX exclusively for swapping fashion items in <br/> ‘new-like’ condition.</p>
               <Link href="/find-your-fashion-mate/review-preference">
                 <button className="bg-transparent border-2 border-gray-500 text-black px-3 py-1 rounded-xl text-lg md:text-xl lg:text-2xl ">
                   Try Now

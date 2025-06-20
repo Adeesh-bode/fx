@@ -4,10 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Rating from "@mui/material/Rating";
 import { BiDownArrow } from "react-icons/bi";
 // import { fetchUser } from "@/lib/actions";
-import { swapProductI, swapProducts } from "@/lib/constants/swapProducts";
+import { swapProducts } from "@/lib/constants/swapProducts";
 import { IoIosCloseCircleOutline, IoMdSend } from "react-icons/io";
-import { toast } from "sonner";
-import ThankYouPopUp from "@/feature/Shared/MessagePopUp";
 import MessagePopUp from "@/feature/Shared/MessagePopUp";
 // const swapProducts = [];
 interface Message {

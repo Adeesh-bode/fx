@@ -8,6 +8,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postV1 } from "@/lib/actions/general";
 import styles from "./styles.module.scss";
+import { toast } from "sonner";
 
 const schema = z.object({
   accessoryName: z
@@ -88,10 +89,12 @@ const AddProductModal = ({
 
       const res = await postV1("/accessory/add-accessory", payload);
       console.log(res);
+      toast.success("Successfully Submitted!");
       onSuccess();
       onClose();
     } catch (error: any) {
       setErrorMsg(error.message || "Something went wrong!");
+      toast.error("Something went wrong while saving. Please try again later.");
     } finally {
       setLoading(false);
     }

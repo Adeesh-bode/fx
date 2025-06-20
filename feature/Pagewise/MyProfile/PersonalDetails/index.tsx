@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./style.module.scss";
 import { postV1, putV1 } from "@/lib/actions/general";
+import { toast } from "sonner";
 
 const schema = z.object({
   profileImage: z.any().nullable(),
@@ -78,9 +79,9 @@ const PersonalDetails = ({
         // Keep existing image if unchanged
         imageUrl = userPersonalData.profileImage || "";
       }
-
+      
       console.log("Image URL:", imageUrl);
-
+      
       // 2. Prepare payload
       const payload = {
         name: data.name,
@@ -89,13 +90,14 @@ const PersonalDetails = ({
         phoneNumber: data.phoneNumber || null,
         profileImage: imageUrl,
       };
-
+      
       // 3. Update API
       const updateRes = await putV1("/users/update-personal-details", payload);
       console.log(updateRes);
+      toast.success("Successfully Submitted!");
     } catch (error) {
       console.error("Submission failed:", error);
-      alert("Something went wrong while saving. Please try again.");
+      toast.error("Something went wrong while saving. Please try again later.");
     }
   };
 
