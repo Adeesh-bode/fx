@@ -1,4 +1,5 @@
 // FIXME: Improve cards hovering details show and zoom in effect image 
+// FIXME: As soon as product db pushed use that response and push in local array to avoaid refetching of entire products
 "use client";
 
 import React, { useState } from "react";
@@ -13,12 +14,7 @@ const schema = z.object({
     .string()
     .min(3, "Product name must be at least 3 characters"),
   accessoryType: z.enum([
-    "Casual",
-    "Formal",
-    "Funky",
-    "Sporty",
-    "Traditional",
-    "Streetwear",
+    "Clothing", "Footwear", "Watch", "Handbag", "Belt", "Scarf", "Sunglasses", "Jewelry", "Hat", "Techwear"
   ]),
   accessoryColor: z.enum([
     "Red",
@@ -59,7 +55,7 @@ const AddProductModal = ({
     resolver: zodResolver(schema),
     defaultValues: {
       accessoryName: "",
-      accessoryType: "Casual",
+      accessoryType: "Clothing",
       accessoryColor: "Black",
       accessorySize: "SIZENOTREQUIRED",
       image: null,

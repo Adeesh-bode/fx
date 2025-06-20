@@ -92,12 +92,7 @@ const PersonalDetails = ({
 
       // 3. Update API
       const updateRes = await putV1("/users/update-personal-details", payload);
-      if (updateRes?.success || updateRes?.status === "ok") {
-        alert("Details updated successfully!");
-      } else {
-        console.warn("Unexpected response:", updateRes);
-        alert("Update may have failed. Please check console.");
-      }
+      console.log(updateRes);
     } catch (error) {
       console.error("Submission failed:", error);
       alert("Something went wrong while saving. Please try again.");

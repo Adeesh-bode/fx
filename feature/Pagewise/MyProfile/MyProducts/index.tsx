@@ -9,13 +9,34 @@ export interface AccessoryI {
   id: string; // Assuming each product has a unique id
   accessoryName: string;
   imageUrl: string;
-  accessoryType: "Clothing" | "Footwear" |"Watch" |"Handbag" |"Belt" |"Scarf" |"Sunglasses" |"Jewelry" | "Hat" |"Techwear";
-  accessoryColor: "Red" | "Blue" | "Green" | "Yellow" | "Orange" | "Purple" | "Pink" | "Brown" | "Black" | "White" | "Grey";
+  accessoryType:
+    | "Clothing"
+    | "Footwear"
+    | "Watch"
+    | "Handbag"
+    | "Belt"
+    | "Scarf"
+    | "Sunglasses"
+    | "Jewelry"
+    | "Hat"
+    | "Techwear";
+  accessoryColor:
+    | "Red"
+    | "Blue"
+    | "Green"
+    | "Yellow"
+    | "Orange"
+    | "Purple"
+    | "Pink"
+    | "Brown"
+    | "Black"
+    | "White"
+    | "Grey";
   accessorySize: "XS" | "S" | "M" | "L" | "XL" | "XXL" | "SIZENOTREQUIRED";
 }
 
 const MyProducts = () => {
-  const [products, setProducts] = useState<AccessoryI[] | []> ([]);
+  const [products, setProducts] = useState<AccessoryI[] | []>([]);
   const [category, setCategory] = useState<string>("all");
   const [showModal, setShowModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
@@ -50,12 +71,16 @@ const MyProducts = () => {
           className={styles.dropdown}
         >
           <option value="all">All</option>
-          <option value="Casual">Casual</option>
-          <option value="Formal">Formal</option>
-          <option value="Funky">Funky</option>
-          <option value="Sporty">Sporty</option>
-          <option value="Traditional">Traditional</option>
-          <option value="Streetwear">Streetwear</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Footwear">Footwear</option>
+          <option value="Watch">Watch</option>
+          <option value="Handbag">Handbag</option>
+          <option value="Belt">Belt</option>
+          <option value="Scarf">Scarf</option>
+          <option value="Sunglasses">Sunglasses</option>
+          <option value="Jewelry">Jewelry</option>
+          <option value="Hat">Hat</option>
+          <option value="Techwear">Techwear</option>
         </select>
 
         <button onClick={() => setShowModal(true)} className={styles.addBtn}>
@@ -64,7 +89,9 @@ const MyProducts = () => {
       </div>
 
       {products.length === 0 ? (
-        <p className="text-center" >{loading ? "Loading..." : "No products available."}</p>
+        <p className="text-center">
+          {loading ? "Loading..." : "No products available."}
+        </p>
       ) : (
         <div className={styles.grid}>
           {products

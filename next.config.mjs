@@ -7,6 +7,16 @@ const nextConfig = {
         hostname: 'cdn.adesh.tech',
         pathname: '**', // Allows all paths
       },
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+        pathname: '/api/portraits/**', // Allows user portraits
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        pathname: '/photos/**', // Allows Pexels photos
+      },
     ],
   },
 };

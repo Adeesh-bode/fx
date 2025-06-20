@@ -11,7 +11,7 @@
 }
 
 .avatarImage {
-  @apply w-28 lg:w-36 rounded-full object-contain;
+  @apply w-28  lg:w-36 aspect-square rounded-full object-cover;
 }
 
 .tabList {

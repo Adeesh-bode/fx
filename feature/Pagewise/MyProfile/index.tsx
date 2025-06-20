@@ -63,7 +63,7 @@ const MyProfile = ({ userData }: { userData: any }) => {
       <aside className={styles.sidebar}>
         <span className={styles.avatarContainer}>
           <img
-            src={"/images/product/fashionx/avatar.png"}
+            src={ userData?.profileImage || "/images/product/fashionx/avatar.png"}
             alt="User Profile Image"
             className={styles.avatarImage}
           />
