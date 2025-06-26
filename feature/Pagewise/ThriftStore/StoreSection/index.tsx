@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useMemo } from 'react';
-import { Search, Filter, Grid3x3 } from 'lucide-react';
+import { Filter, Grid3x3 } from 'lucide-react';
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import './products.scss';

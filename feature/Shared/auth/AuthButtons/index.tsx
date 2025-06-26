@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client"
 // import { signOut } from "next-auth/react";
 import { signOut, useSession } from "next-auth/react";
@@ -9,9 +10,10 @@ import { Bell, LogOut } from "lucide-react";
 
 const AuthButtons = () => {
   // const router = useRouter();
-  const { data } = useSession(); // session as alias
-  const session = data?.session;
-  console.log("useSession raw output", useSession());
+  const { data, status } = useSession(); // session as alias
+  if (status === 'loading') return null;
+  const session: any = (data as any)?.session;
+  // console.log("useSession raw output", useSession());
 
   // console.log(data);
   console.log(session);

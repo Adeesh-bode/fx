@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 import PersonalDetails from "./PersonalDetails";
 import styles from "./style.module.scss";
-import FashionPreference from "./FashionPreferences";
+// import FashionPreference from "./FashionPreferences";
 
 //  only load when that tab is active
 const Orders = dynamic(() => import("./Orders"));

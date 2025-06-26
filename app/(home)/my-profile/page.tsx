@@ -2,6 +2,8 @@ import MyProfile from "@/feature/Pagewise/MyProfile";
 import { getPersonalDetails } from "@/lib/actions";
 import React from "react";
 
+export const dynamic = 'force-dynamic';
+
 const page = async () => {
   const userData = await getPersonalDetails();
   console.log(userData);

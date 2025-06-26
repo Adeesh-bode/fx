@@ -8,7 +8,7 @@ export declare module "next-auth" {
             id: string;
             name: string;
             email: string;
-            // image: string;
+            profileImage: string;
         };
         accessToken: string;
         refreshToken: string;
@@ -19,13 +19,13 @@ export declare module "next-auth" {
 
 // import { JWT } from "next-auth/jwt";
 
-declare module "next-auth/jwt" {
+export declare module "next-auth/jwt" {
     interface JWT {
         user: {
             id: string;
             name: string;
             email: string;
-            // image: string;
+            profileImage: string;
         };
         accessToken: string;
         refreshToken: string;

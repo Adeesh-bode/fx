@@ -52,7 +52,7 @@ export default function ThriftSection() {
               <Filter className="icon" />
               <h3>Gender</h3>
             </div>
-            {genderOptions.map((option) => (
+            {genderOptions.map(( option : any ) => (
               <div
                 key={option.id}
                 className={`filter-card ${selectedGender === option.id ? "selected-card" : ""}`}
@@ -74,7 +74,7 @@ export default function ThriftSection() {
               <h3>Categories</h3>
             </div>
             <div className="category-grid">
-              {categoryOptions.map(({ id, label, icon: Icon, description }) => (
+              {categoryOptions.map(({ id, label, icon: Icon, description } : any) => (
                 <div
                   key={id}
                   className={`filter-card ${selectedCategory === id ? "selected-card" : ""}`}

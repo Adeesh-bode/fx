@@ -1,5 +1,4 @@
 import { Search, Filter } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import styles from "../styles/searchbar.module.scss";
 
@@ -22,10 +21,11 @@ const SearchBar = ({ searchQuery, setSearchQuery, onToggleFilter }: SearchBarPro
 
     <div className={styles.inputWrapper}>
       <Search className={styles.searchIcon} />
-      <Input
+      <input
+        type="text"
         placeholder="Search products..."
         value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
         className={styles.input}
       />
     </div>

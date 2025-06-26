@@ -290,7 +290,7 @@ const MatchedUser = ({
             className="h-full w-full overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] "
           >
             {(userData?.userAccessories || swapProducts).map(
-              (product, index) => (
+              (product:any, index: number) => (
                 <div
                   key={index}
                   onClick={() => setSelectedProduct(product)}
