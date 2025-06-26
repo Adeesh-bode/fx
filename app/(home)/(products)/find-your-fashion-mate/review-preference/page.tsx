@@ -71,7 +71,6 @@ const ReviewPreference = () => {
           console.log("Existing user attributes:", res);
           reset(res);
           setIsUpdate(true);
-          console.log("Is update");
         }
       } catch (error) {
         console.error("Error fetching existing user attributes:", error);

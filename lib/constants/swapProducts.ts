@@ -1,4 +1,4 @@
-export interface swapProductI {
+interface swapProductI {
     id: string;
     name: string;
     image: string;

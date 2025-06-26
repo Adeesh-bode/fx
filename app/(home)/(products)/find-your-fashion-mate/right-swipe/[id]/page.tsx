@@ -1,6 +1,6 @@
 import MatchedUser from '@/components/molecule/Page/Products/FashionMate/RightSwipe/MatchedUser';
 import { getV1 } from '@/lib/actions/general';
-import React from 'react'
+import React from 'react';
 
 const ExchangeMatePage = async ({ params }: { params: { id: string } }) => {
   console.log(params);

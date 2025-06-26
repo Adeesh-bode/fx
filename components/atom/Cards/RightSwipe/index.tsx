@@ -28,7 +28,7 @@ const RightSwipeCard = ({ user }: { user: MatchedUser }) => {
         <span>Weight: {user.weight}</span>
         <span>Size Top: {user.sizeTop}</span>
         <span>Size Bottom: {user.sizeBottom}</span>
-        <span>Preferred Color: {user.preferredColor}</span>
+        <span>Preferred Color: {user.preferedColor}</span>
       </div>
     </motion.div>
   );

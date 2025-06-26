@@ -10,7 +10,7 @@ export interface UserI {
   age: number;
   sizeTop: string;
   sizeBottom: string;
-  preferredColor: string[];
+  preferedColor: string[];
   preferenceType: string;
 }
 
