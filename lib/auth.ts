@@ -1,7 +1,6 @@
-import { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
 import { BACKEND_URL } from "@/lib/constants/Env";
-import { getServerSession } from "next-auth";
 import axios from "axios";
 import { JWT } from "next-auth/jwt";
 

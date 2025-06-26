@@ -1,7 +1,7 @@
 // this is used for /api/auth/(sign-in|sign-up|session)
 
 import { authOptions } from "@/lib/auth";
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 
 const handler = NextAuth(authOptions); // it is handler for /api/auth/<anythinghere> uses auth options to process the request
 // why didnt we pass auth optiions directly to NextAuth?
