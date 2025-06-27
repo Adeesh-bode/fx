@@ -27,7 +27,7 @@ const RightSwipePage = async () => {
       age: 40,
       weight: 80,
       height: 190,
-      PreferenceType: "Casual",
+      preferenceType: "Casual",
       preferedColor: "Red",
     })
     .then((response) => {

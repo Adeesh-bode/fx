@@ -1,11 +1,11 @@
 import StoreSection from '@/feature/Pagewise/ThriftStore/StoreSection'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const StorePage = () => {
   return (
-    <>
-        <StoreSection />
-    </>
+    <Suspense fallback={<div>Loading...</div>}>
+      <StoreSection />
+    </Suspense>
   )
 }
 
