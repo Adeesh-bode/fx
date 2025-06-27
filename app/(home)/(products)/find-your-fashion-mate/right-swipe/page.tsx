@@ -21,13 +21,13 @@ export interface MatchedUser extends UserI {
 const RightSwipePage = async () => {
   let data: MatchedUser[] = [];
   await axios
-    .post("http://localhost:8000/match", {
+    .post("http://3.86.16.206:8000/match", {
       sizeTop: "XS",
       sizeBottom: "XS",
-      age: 0,
-      weight: 0,
-      height: 0,
-      preferenceType: "Casual",
+      age: 40,
+      weight: 80,
+      height: 190,
+      PreferenceType: "Casual",
       preferedColor: "Red",
     })
     .then((response) => {
@@ -36,6 +36,7 @@ const RightSwipePage = async () => {
     })
     .catch((error) => {
       console.log(error);
+      console.error(error.response.data.detail);
     });
 
   return (
