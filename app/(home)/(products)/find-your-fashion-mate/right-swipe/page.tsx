@@ -2,7 +2,7 @@ import RightSwipe from "@/components/molecule/Page/Products/FashionMate/RightSwi
 import React from "react";
 
 import axios from "axios";
-import { BACKEND_URL, MATCHMAKING_URL } from "@/lib/constants/Env";
+import { MATCHMAKING_URL } from "@/lib/constants/Env";
 import { getV1 } from "@/lib/actions/general";
 
 export interface UserI {
@@ -21,30 +21,25 @@ export interface MatchedUser extends UserI {
 }
 
 const RightSwipePage = async () => {
-  let data: MatchedUser[] = [];
-  const url1= "/users/attributes";
-  console.log(url1);
-  const userAttributes = await getV1(url1);
-  console.log(userAttributes);
-  const url2 = MATCHMAKING_URL + "/match";
-  console.log(url2);
+  let matches: MatchedUser[] = [];
 
-  await axios
-    .post(url2, userAttributes)
-    .then((response) => {
-      data = response.data.matches;
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log(error);
-      console.error(error.response.data.detail);
-    });
+  try {
+    const userAttributes = await getV1("/users/attributes");
 
-  return (
-    <>
-      <RightSwipe matchesData={data} />
-    </>
-  );
+    if (!userAttributes || Object.keys(userAttributes).length === 0) {
+      console.warn("User attributes are empty or invalid.");
+      return <RightSwipe matchesData={[]} />;
+    }
+
+    // attributes to matchmaking service
+    const { data } = await axios.post(`${MATCHMAKING_URL}/match`, userAttributes);
+    matches = data.matches || [];
+
+  } catch (error: any) {
+    console.error("Error fetching match data:", error?.response?.data?.detail || error.message || error);
+  }
+
+  return <RightSwipe matchesData={matches} />;
 };
 
 export default RightSwipePage;
