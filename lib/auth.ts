@@ -74,6 +74,7 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null;
         const { email, password } = credentials;
         const url = BACKEND_URL + "/auth/login";
+        console.log(url);
         const res = await fetch(url, {
           method: "POST",
           body: JSON.stringify({

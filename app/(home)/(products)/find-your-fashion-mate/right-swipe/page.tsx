@@ -2,6 +2,8 @@ import RightSwipe from "@/components/molecule/Page/Products/FashionMate/RightSwi
 import React from "react";
 
 import axios from "axios";
+import { BACKEND_URL, MATCHMAKING_URL } from "@/lib/constants/Env";
+import { getV1 } from "@/lib/actions/general";
 
 export interface UserI {
   userId: string;
@@ -20,16 +22,15 @@ export interface MatchedUser extends UserI {
 
 const RightSwipePage = async () => {
   let data: MatchedUser[] = [];
+  const url1= "/users/attributes";
+  console.log(url1);
+  const userAttributes = await getV1(url1);
+  console.log(userAttributes);
+  const url2 = MATCHMAKING_URL + "/match";
+  console.log(url2);
+
   await axios
-    .post("http://3.86.16.206:8000/match", {
-      sizeTop: "XS",
-      sizeBottom: "XS",
-      age: 40,
-      weight: 80,
-      height: 190,
-      preferenceType: "Casual",
-      preferedColor: "Red",
-    })
+    .post(url2, userAttributes)
     .then((response) => {
       data = response.data.matches;
       console.log(data);
