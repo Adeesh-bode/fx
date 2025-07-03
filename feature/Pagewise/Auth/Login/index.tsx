@@ -86,6 +86,7 @@ export default function LogInPage() {
         {isSubmitting ? "Submitting..." : "Login In"}
       </button>
       <p className=" text-center">Not Registered? <Link href={`/signup?callbackUrl=${callbackUrl}`}className="text-green-500" >Sign Up</Link></p>
+      <p className="text-center">Testing Credentials<br />email:test@gmail.com <br />password:test@gmail.com  </p>
       {serverMessage && <p className="text-green-500">{serverMessage}</p>}
     </form>
     </div>
