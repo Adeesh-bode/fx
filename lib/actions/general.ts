@@ -64,21 +64,27 @@ export async function postV1(url: string, data: any) {
     if (!session?.accessToken) {
       throw new Error("No access token in session");
     }
-    console.log(session);
-    const URL = `${BACKEND_URL}` + url;
-    console.log(URL);
+
+    const URL = `${BACKEND_URL}${url}`;
+    console.log("URL:", URL);
+
+    const isFormData = data instanceof FormData;
+
     const response = await axios.post(URL, data, {
       headers: {
         "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
+        ...(isFormData
+          ? {} // don't manually set Content-Type for FormData -- axios will auto do it --- than it will accomadate multi part form files as well
+          : { "Content-Type": "application/json" }),
         Authorization: `Bearer ${session.accessToken}`,
       },
     });
+
     console.log(response);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching user:", error);
     return { error: "Failed to load user data." };
   }
 }
+
