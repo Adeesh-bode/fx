@@ -31,8 +31,13 @@ const RightSwipePage = async () => {
       return <RightSwipe matchesData={[]} />;
     }
 
+    console.log("userAttributes", userAttributes);
+
     // attributes to matchmaking service
-    const { data } = await axios.post(`${MATCHMAKING_URL}/match`, userAttributes);
+    const url = MATCHMAKING_URL + "/match";
+    console.log("url", url);
+    const { data } = await axios.post(url, userAttributes);
+    console.log("data", data);
     matches = data.matches || [];
 
   } catch (error: any) {

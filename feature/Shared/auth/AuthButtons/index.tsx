@@ -16,8 +16,8 @@ const AuthButtons = () => {
   // console.log("useSession raw output", useSession());
 
   // console.log(data);
-  console.log(session);
-  console.log(session?.user);
+  // console.log(session);
+  // console.log(session?.user);
   if (session && session?.user) {
     return (
       <div className="flex items-center gap-4 text-xl md:text-2xl">

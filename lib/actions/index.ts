@@ -14,7 +14,7 @@ export async function getUserDetails() {
     if (!session?.accessToken) {
       throw new Error("No access token in session");
     }
-    console.log(session);
+    // console.log(session);
     const url = `${BACKEND_URL}/users/user-details`;
     const response = await axios.get(url, {
       headers: { "Cache-Control": "no-cache", Authorization: `Bearer ${session.accessToken}` },
@@ -37,7 +37,7 @@ export async function getPersonalDetails() {
     if (!session?.accessToken) {
       throw new Error("No access token in session");
     }
-    console.log(session);
+    // console.log(session);
     const url = `${BACKEND_URL}/users/get-personal-details`;
     const response = await axios.get(url, {
       headers: { "Cache-Control": "no-cache", Authorization: `Bearer ${session.accessToken}` },

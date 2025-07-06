@@ -191,7 +191,7 @@ export const authOptions: NextAuthOptions = {
       session.user = token.user; // this will add user object to session object whe user is logged in
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
-      console.log(session);
+      // console.log(session);
       return session;
     },
   },

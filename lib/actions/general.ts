@@ -12,9 +12,9 @@ export async function getV1(url: string) {
     if (!session?.accessToken) {
       throw new Error("No access token in session");
     }
-    console.log(session);
+    // console.log(session);
     const URL = `${BACKEND_URL}` + url;
-    console.log(URL);
+    // console.log(URL);
     const response = await axios.get(URL, {
       headers: {
         "Cache-Control": "no-cache",
@@ -38,7 +38,7 @@ export async function putV1(url: string, data: any) {
     if (!session?.accessToken) {
       throw new Error("No access token in session");
     }
-    console.log(session);
+    // console.log(session);
     const URL = `${BACKEND_URL}` + url;
     const response = await axios.put(URL, data, {
       headers: {
